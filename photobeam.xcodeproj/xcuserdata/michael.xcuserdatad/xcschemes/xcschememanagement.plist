@@ -4,10 +4,38 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BeamWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>photobeam.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4C0F8BD624A3698900B990DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C0F8BEC24A3698A00B990DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C0F8BF724A3698A00B990DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C0F8C0D24A369A500B990DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

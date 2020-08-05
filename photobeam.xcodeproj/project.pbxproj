@@ -15,6 +15,12 @@
 		4C0F8BE724A3698A00B990DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8BE524A3698A00B990DF /* LaunchScreen.storyboard */; };
 		4C0F8BF224A3698A00B990DF /* photobeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BF124A3698A00B990DF /* photobeamTests.swift */; };
 		4C0F8BFD24A3698A00B990DF /* photobeamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BFC24A3698A00B990DF /* photobeamUITests.swift */; };
+		4C0F8C1124A369A500B990DF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0F8C1024A369A500B990DF /* WidgetKit.framework */; };
+		4C0F8C1324A369A500B990DF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0F8C1224A369A500B990DF /* SwiftUI.framework */; };
+		4C0F8C1624A369A500B990DF /* BeamWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1524A369A500B990DF /* BeamWidget.swift */; };
+		4C0F8C1824A369A600B990DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1724A369A600B990DF /* Assets.xcassets */; };
+		4C0F8C1C24A369A600B990DF /* BeamWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C2124A369CE00B990DF /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +38,28 @@
 			remoteGlobalIDString = 4C0F8BD624A3698900B990DF;
 			remoteInfo = photobeam;
 		};
+		4C0F8C1A24A369A600B990DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C0F8BCF24A3698900B990DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C0F8C0D24A369A500B990DF;
+			remoteInfo = BeamWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4C0F8C2024A369A600B990DF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4C0F8C1C24A369A600B990DF /* BeamWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4C0F8BD724A3698900B990DF /* photobeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +76,14 @@
 		4C0F8BF824A3698A00B990DF /* photobeamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photobeamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0F8BFC24A3698A00B990DF /* photobeamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photobeamUITests.swift; sourceTree = "<group>"; };
 		4C0F8BFE24A3698A00B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeamWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0F8C1024A369A500B990DF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4C0F8C1224A369A500B990DF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4C0F8C1524A369A500B990DF /* BeamWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamWidget.swift; sourceTree = "<group>"; };
+		4C0F8C1724A369A600B990DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C0F8C1924A369A600B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0F8C2124A369CE00B990DF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		4C0F8C2324A3743300B990DF /* photobeam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = photobeam.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +108,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C0F8C0B24A369A500B990DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0F8C1324A369A500B990DF /* SwiftUI.framework in Frameworks */,
+				4C0F8C1124A369A500B990DF /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,6 +126,8 @@
 				4C0F8BD924A3698900B990DF /* photobeam */,
 				4C0F8BF024A3698A00B990DF /* photobeamTests */,
 				4C0F8BFB24A3698A00B990DF /* photobeamUITests */,
+				4C0F8C1424A369A500B990DF /* BeamWidget */,
+				4C0F8C0F24A369A500B990DF /* Frameworks */,
 				4C0F8BD824A3698900B990DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +138,7 @@
 				4C0F8BD724A3698900B990DF /* photobeam.app */,
 				4C0F8BED24A3698A00B990DF /* photobeamTests.xctest */,
 				4C0F8BF824A3698A00B990DF /* photobeamUITests.xctest */,
+				4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +146,7 @@
 		4C0F8BD924A3698900B990DF /* photobeam */ = {
 			isa = PBXGroup;
 			children = (
+				4C0F8C2324A3743300B990DF /* photobeam.entitlements */,
 				4C0F8BDA24A3698900B990DF /* AppDelegate.swift */,
 				4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */,
 				4C0F8BDE24A3698900B990DF /* ContentView.swift */,
@@ -106,6 +154,7 @@
 				4C0F8BE524A3698A00B990DF /* LaunchScreen.storyboard */,
 				4C0F8BE824A3698A00B990DF /* Info.plist */,
 				4C0F8BE224A3698A00B990DF /* Preview Content */,
+				4C0F8C2124A369CE00B990DF /* ImageLoader.swift */,
 			);
 			path = photobeam;
 			sourceTree = "<group>";
@@ -136,6 +185,25 @@
 			path = photobeamUITests;
 			sourceTree = "<group>";
 		};
+		4C0F8C0F24A369A500B990DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C0F8C1024A369A500B990DF /* WidgetKit.framework */,
+				4C0F8C1224A369A500B990DF /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C0F8C1424A369A500B990DF /* BeamWidget */ = {
+			isa = PBXGroup;
+			children = (
+				4C0F8C1524A369A500B990DF /* BeamWidget.swift */,
+				4C0F8C1724A369A600B990DF /* Assets.xcassets */,
+				4C0F8C1924A369A600B990DF /* Info.plist */,
+			);
+			path = BeamWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,10 +214,12 @@
 				4C0F8BD324A3698900B990DF /* Sources */,
 				4C0F8BD424A3698900B990DF /* Frameworks */,
 				4C0F8BD524A3698900B990DF /* Resources */,
+				4C0F8C2024A369A600B990DF /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4C0F8C1B24A369A600B990DF /* PBXTargetDependency */,
 			);
 			name = photobeam;
 			productName = photobeam;
@@ -192,6 +262,23 @@
 			productReference = 4C0F8BF824A3698A00B990DF /* photobeamUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		4C0F8C0D24A369A500B990DF /* BeamWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C0F8C1D24A369A600B990DF /* Build configuration list for PBXNativeTarget "BeamWidgetExtension" */;
+			buildPhases = (
+				4C0F8C0A24A369A500B990DF /* Sources */,
+				4C0F8C0B24A369A500B990DF /* Frameworks */,
+				4C0F8C0C24A369A500B990DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeamWidgetExtension;
+			productName = BeamWidgetExtension;
+			productReference = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +299,9 @@
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 4C0F8BD624A3698900B990DF;
 					};
+					4C0F8C0D24A369A500B990DF = {
+						CreatedOnToolsVersion = 12.0;
+					};
 				};
 			};
 			buildConfigurationList = 4C0F8BD224A3698900B990DF /* Build configuration list for PBXProject "photobeam" */;
@@ -230,6 +320,7 @@
 				4C0F8BD624A3698900B990DF /* photobeam */,
 				4C0F8BEC24A3698A00B990DF /* photobeamTests */,
 				4C0F8BF724A3698A00B990DF /* photobeamUITests */,
+				4C0F8C0D24A369A500B990DF /* BeamWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +350,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C0F8C0C24A369A500B990DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0F8C1824A369A600B990DF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -268,6 +367,7 @@
 			files = (
 				4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */,
 				4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */,
+				4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */,
 				4C0F8BDF24A3698900B990DF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +388,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C0F8C0A24A369A500B990DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0F8C1624A369A500B990DF /* BeamWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -300,6 +408,11 @@
 			isa = PBXTargetDependency;
 			target = 4C0F8BD624A3698900B990DF /* photobeam */;
 			targetProxy = 4C0F8BF924A3698A00B990DF /* PBXContainerItemProxy */;
+		};
+		4C0F8C1B24A369A600B990DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C0F8C0D24A369A500B990DF /* BeamWidgetExtension */;
+			targetProxy = 4C0F8C1A24A369A600B990DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -434,8 +547,10 @@
 		4C0F8C0224A3698A00B990DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = photobeam/photobeam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"photobeam/Preview Content\"";
 				DEVELOPMENT_TEAM = QB7XH3QZBY;
@@ -455,8 +570,10 @@
 		4C0F8C0324A3698A00B990DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = photobeam/photobeam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"photobeam/Preview Content\"";
 				DEVELOPMENT_TEAM = QB7XH3QZBY;
@@ -557,6 +674,48 @@
 			};
 			name = Release;
 		};
+		4C0F8C1E24A369A600B990DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB7XH3QZBY;
+				INFOPLIST_FILE = BeamWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.elsdoerfer.photobeam.BeamWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C0F8C1F24A369A600B990DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB7XH3QZBY;
+				INFOPLIST_FILE = BeamWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.elsdoerfer.photobeam.BeamWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -592,6 +751,15 @@
 			buildConfigurations = (
 				4C0F8C0824A3698A00B990DF /* Debug */,
 				4C0F8C0924A3698A00B990DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C0F8C1D24A369A600B990DF /* Build configuration list for PBXNativeTarget "BeamWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C0F8C1E24A369A600B990DF /* Debug */,
+				4C0F8C1F24A369A600B990DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
