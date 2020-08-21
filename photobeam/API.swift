@@ -1,0 +1,95 @@
+//
+//  API.swift
+//  photobeam
+//
+//  Created by Michael on 8/5/20.
+//
+
+import Foundation
+import Moya
+
+public enum PhotoBeamService {
+    case register
+    case connect(code: String)
+    case query
+//    case showUser(id: Int)
+//    case createUser(firstName: String, lastName: String)
+//    case updateUser(id: Int, firstName: String, lastName: String)
+//    case showAccounts
+}
+
+// MARK: - TargetType Protocol Implementation
+extension PhotoBeamService: TargetType {
+    public var baseURL: URL { return URL(string: "http://localhost:10000")! }
+    public var path: String {
+        switch self {
+        case .register:
+            return "/register"
+        case .connect(let id):
+            return "/connect"
+        case .query:
+            return "/query"
+//        case .createUser(_, _):
+//            return "/users"
+//        case .showAccounts:
+//            return "/accounts"
+        }
+    }
+    public  var method: Moya.Method {
+        switch self {
+        default:
+            return .post
+        }
+    }
+    public var task: Task {
+        switch self {
+        case .register, .query:
+            return .requestPlain
+        case .connect(let code):
+            return .requestParameters(parameters: ["connectCode": code], encoding: JSONEncoding.default)
+//        case let .updateUser(_, firstName, lastName):  // Always sends parameters in URL, regardless of which HTTP method is used
+//            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: URLEncoding.queryString)
+//        case let .createUser(firstName, lastName): // Always send parameters as JSON in request body
+//            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: JSONEncoding.default)
+        }
+    }
+    
+    public var sampleData: Data {
+        switch self {
+        case .register, .connect, .query:
+            return "Half measures are as bad as nothing at all.".utf8Encoded
+//        case .showUser(let id):
+//            return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
+//        case .createUser(let firstName, let lastName):
+//            return "{\"id\": 100, \"first_name\": \"\(firstName)\", \"last_name\": \"\(lastName)\"}".utf8Encoded
+//        case .updateUser(let id, let firstName, let lastName):
+//            return "{\"id\": \(id), \"first_name\": \"\(firstName)\", \"last_name\": \"\(lastName)\"}".utf8Encoded
+//        case .showAccounts:
+//            // Provided you have a file named accounts.json in your bundle.
+//            guard let url = Bundle.main.url(forResource: "accounts", withExtension: "json"),
+//                let data = try? Data(contentsOf: url) else {
+//                    return Data()
+//            }
+//            return data
+        }
+    }
+    public var parameterEncoding: Moya.ParameterEncoding {
+        return JSONEncoding.default
+    }
+    public var headers: [String: String]? {
+        return [
+            "Content-type": "application/json",
+            "Authorization": ""
+        ]
+    }
+}
+//// MARK: - Helpers
+private extension String {
+    var urlEscaped: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+    }
+
+    var utf8Encoded: Data {
+        return data(using: .utf8)!
+    }
+}

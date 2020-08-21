@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		4C0F8C1824A369A600B990DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1724A369A600B990DF /* Assets.xcassets */; };
 		4C0F8C1C24A369A600B990DF /* BeamWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C2124A369CE00B990DF /* ImageLoader.swift */; };
+		4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */; };
+		4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */; };
+		4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161024DAFCEB0037AD0D /* DataStore.swift */; };
+		4CB4161624DAFF490037AD0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161524DAFF490037AD0D /* API.swift */; };
+		4CB4161924DB017A0037AD0D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB4161824DB017A0037AD0D /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,10 @@
 		4C0F8C1924A369A600B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8C2124A369CE00B990DF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4C0F8C2324A3743300B990DF /* photobeam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = photobeam.entitlements; sourceTree = "<group>"; };
+		4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotConnectedScreen.swift; sourceTree = "<group>"; };
+		4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedScreen.swift; sourceTree = "<group>"; };
+		4CB4161024DAFCEB0037AD0D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		4CB4161524DAFF490037AD0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +156,7 @@
 		4C0F8BD924A3698900B990DF /* photobeam */ = {
 			isa = PBXGroup;
 			children = (
+				4CB4161524DAFF490037AD0D /* API.swift */,
 				4C0F8C2324A3743300B990DF /* photobeam.entitlements */,
 				4C0F8BDA24A3698900B990DF /* AppDelegate.swift */,
 				4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */,
@@ -155,6 +166,9 @@
 				4C0F8BE824A3698A00B990DF /* Info.plist */,
 				4C0F8BE224A3698A00B990DF /* Preview Content */,
 				4C0F8C2124A369CE00B990DF /* ImageLoader.swift */,
+				4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */,
+				4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */,
+				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
 			);
 			path = photobeam;
 			sourceTree = "<group>";
@@ -222,6 +236,9 @@
 				4C0F8C1B24A369A600B990DF /* PBXTargetDependency */,
 			);
 			name = photobeam;
+			packageProductDependencies = (
+				4CB4161824DB017A0037AD0D /* Moya */,
+			);
 			productName = photobeam;
 			productReference = 4C0F8BD724A3698900B990DF /* photobeam.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +330,9 @@
 				Base,
 			);
 			mainGroup = 4C0F8BCE24A3698900B990DF;
+			packageReferences = (
+				4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 4C0F8BD824A3698900B990DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -365,9 +385,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */,
+				4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */,
 				4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */,
+				4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */,
 				4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */,
 				4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */,
+				4CB4161624DAFF490037AD0D /* API.swift in Sources */,
 				4C0F8BDF24A3698900B990DF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -765,6 +789,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4CB4161824DB017A0037AD0D /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C0F8BCF24A3698900B990DF /* Project object */;
 }
