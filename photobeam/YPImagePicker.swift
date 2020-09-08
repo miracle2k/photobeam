@@ -8,11 +8,43 @@
 import SwiftUI
 import YPImagePicker
 
-struct YPImagePickerView: UIViewControllerRepresentable
+struct YPBasedImagePicker: UIViewControllerRepresentable
 {
+    @Environment(\.presentationMode) var presentationMode
+    var imageSelected: (UIImage) -> Void
+    
     func makeUIViewController(context: Context) -> YPImagePicker {
-        let vc =  YPImagePicker()
-        vc.didFinishPicking { [unowned vc] items, _ in
+        let picker = YPImagePicker()
+        picker.delegate = context.coordinator
+        return picker
+        
+//        picker.didFinishPicking { [unowned picker] items, _ in
+//
+//        }
+    }
+
+    func updateUIViewController(_ uiViewController: YPImagePicker, context: Context) {
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UINavigationControllerDelegate, YPImagePickerDelegate {
+        func noPhotos() {
+        }
+        
+        func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool {
+            return true;
+        }
+        
+        let parent: YPBasedImagePicker
+
+        init(_ parent: YPBasedImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePicker(_ imagePicker: YPImagePicker, didFinishPicking items: [YPMediaItem]) {
             if let photo = items.singlePhoto {
                 print(photo.fromCamera) // Image source (camera or library)
                 print(photo.image) // Final image selected by the user
@@ -20,18 +52,17 @@ struct YPImagePickerView: UIViewControllerRepresentable
                 print(photo.modifiedImage) // Transformed image, can be nil
                 print(photo.exifMeta) // Print exif meta data of original image.
             }
-            vc.dismiss(animated: true, completion: nil)
+            parent.presentationMode.wrappedValue.dismiss()
         }
-        print("\nmakeUIViewController \(vc)")
-        return vc
-    }
-
-    func updateUIViewController(_ uiViewController: YPImagePicker, context: Context) {
-        print("updateUIViewController \(uiViewController)")
-    }
-
-    static func dismantleUIViewController(_ uiViewController: YPImagePicker, coordinator: Self.Coordinator) {
-        print("dismantleUIViewController \(uiViewController)")
+        
+//        func imagePickerController(_ picker: YPImagePickerDelegate, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+//            if let uiImage = info[.originalImage] as? UIImage {
+//                self.parent.imageSelected(uiImage);
+//                //parent.image = uiImage
+//            }
+//
+//            parent.presentationMode.wrappedValue.dismiss()
+//        }
     }
 
 }

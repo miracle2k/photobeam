@@ -30,6 +30,10 @@ struct Provider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
+    
+    func placeholder(in context: Context) -> SimpleEntry {
+        SimpleEntry(date: Date())
+    }
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -63,10 +67,10 @@ struct WidgetEntryView : View {
 
 @main
 struct BeamWidget: SwiftUI.Widget {
-    private let kind: String = "Widget"
+    private let kind: String = "com.photobeam.widget"
 
     public var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(), placeholder: PlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             WidgetEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")

@@ -109,26 +109,16 @@ final class DataStore: ObservableObject {
         }
     }
     
-    // Request a connection to a peer
-    public func connect(code: String) {
-        provider.request(.connect(code: code)) { result in
-            switch result {
-            case let .success(moyaResponse):
-                let data = moyaResponse.data
-                let statusCode = moyaResponse.statusCode
-                
-                do {
-                    self.state.account = try moyaResponse.map(AccountResponse.self)
-                } catch {
-                    print(error)
-                }
-                // do something with the response data or statusCode
-            case let .failure(error):
-                // this means there was a network failure - either the request
-                // wasn't sent (connectivity), or no response was received (server
-                // timed out).  If the server responds with a 4xx or 5xx error, that
-                // will be sent as a ".success"-ful response.
-                print("Error, request failed")
+    // Request a connection to a peer using a code. This returns a promise. If the code is invalid,
+    // this promise will throw with a 400 error. TODO: Rewrite this to return a bool, and recover from the 400.
+    public func connect(code: String) -> Promise<Void> {
+        firstly {
+            provider.requestPromise(.connect(code: code))
+        }.done { moyaResponse in
+            do {
+                self.state.connection = try moyaResponse.map(ConnectionState.self)
+            } catch {
+                print(error)
             }
         }
     }
@@ -153,6 +143,22 @@ final class DataStore: ObservableObject {
                 // will be sent as a ".success"-ful response.
                 print("Error, request failed")
             }
+        }
+    }
+    
+    public func disconnect() {
+        firstly {
+            provider.requestPromise(.disconnect)
+        }.then { queryResponse -> Promise<Void> in
+            do {
+                self.state.connection = try queryResponse.map(ConnectionState.self)
+            } catch {
+                print(error)
+            }
+            
+            return Promise.value(());
+        }.catch { err in
+            print("Error", err)
         }
     }
     

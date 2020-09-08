@@ -17,7 +17,7 @@ struct ConnectedScreen: View {
             Button("Set New Photo") {
                 self.presented.toggle()
             }.fullScreenCover(isPresented: $presented) {
-                StandardImagePicker { (image) in
+                YPBasedImagePicker { (image) in
                     self.handlePhotoPicked(image: image)
                 }
             }
@@ -29,7 +29,7 @@ struct ConnectedScreen: View {
     }
     
     func handleDisconnectClick() {
-        
+        self.dataStore.disconnect();
     }
     
     func handleSendPhoto() {

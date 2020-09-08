@@ -10,7 +10,7 @@ import UIKit
 
 struct ContentView: View {
 
-    private var dataStore: DataStore;
+    @ObservedObject private var dataStore: DataStore;
     
     init(dataStore: DataStore) {
         self.dataStore = dataStore;
@@ -24,8 +24,13 @@ struct ContentView: View {
                 if !self.dataStore.isInitialized {
                     Text("still loading...")
                 }
-                else if self.dataStore.state.connection != nil {
-                   ConnectedScreen()
+                else if (self.dataStore.state.connection?.peerId ?? 0) != 0 {
+                    if (self.dataStore.state.connection?.status == "live") {
+                        ConnectedScreen()
+                    }
+                    else {
+                        Text("Waiting for Accept")
+                    }
                 } else {
                    NotConnectedScreen()
                 }

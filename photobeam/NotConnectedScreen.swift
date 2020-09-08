@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Moya
+import PromiseKit
 
 struct NotConnectedScreen: View {
     @State private var text: String = ""
-    @State private var showingAlert = false
+    @State private var isLoading = false
     @EnvironmentObject var dataStore: DataStore;
     
 
@@ -18,22 +19,22 @@ struct NotConnectedScreen: View {
         VStack {
             Text("You are not connected to anyone.")
             Text("Code for others to connect to you: " + (dataStore.state.account?.connectCode ?? ""))
-            TextField("Foobar", text: $text).multilineTextAlignment(TextAlignment.center)
+            TextField("Foobar", text: $text).multilineTextAlignment(TextAlignment.center).autocapitalization(.none)
+            if isLoading {
+                ProgressView()
+            }
             Button(action: handleButtonClick) {
                 Text("Connect!")
-            }.alert(isPresented: $showingAlert) {
-                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
-            }
-            dataStore.state.account.map {_ in
-                Text("Current State" + String(dataStore.state.account!.accountId))
             }
         }
     };
     
     func handleButtonClick() {
-        // handle any exception, show an alert
-        dataStore.ensureAccount();
-        dataStore.connect(code: self.text)
+        self.isLoading = true;
+        let waitAtLeast = after(seconds: 0.5)
+        dataStore.connect(code: self.text).then { waitAtLeast }.ensure {
+            self.isLoading = false;
+        }
     }
 }
 
