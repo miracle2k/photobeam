@@ -7,12 +7,14 @@
 
 import Foundation
 import Moya
+import PromiseKit
 
 public enum PhotoBeamService {
     case register
     case connect(code: String)
     case query
     case set(data: Data)
+    case get
 //    case showUser(id: Int)
 //    case createUser(firstName: String, lastName: String)
 //    case updateUser(id: Int, firstName: String, lastName: String)
@@ -32,10 +34,8 @@ extension PhotoBeamService: TargetType {
             return "/query"
         case .set:
             return "/set"
-//        case .createUser(_, _):
-//            return "/users"
-//        case .showAccounts:
-//            return "/accounts"
+        case .get:
+            return "/get"
         }
     }
     public  var method: Moya.Method {
@@ -46,7 +46,7 @@ extension PhotoBeamService: TargetType {
     }
     public var task: Task {
         switch self {
-        case .register, .query:
+        case .register, .query, .get:
             return .requestPlain
         case .connect(let code):
             return .requestParameters(parameters: ["connectCode": code], encoding: JSONEncoding.default)
@@ -64,7 +64,7 @@ extension PhotoBeamService: TargetType {
     
     public var sampleData: Data {
         switch self {
-        case .register, .connect, .query, .set:
+        case .register, .connect, .query, .set, .get:
             return "Half measures are as bad as nothing at all.".utf8Encoded
 //        case .showUser(let id):
 //            return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
@@ -99,5 +99,25 @@ private extension String {
 
     var utf8Encoded: Data {
         return data(using: .utf8)!
+    }
+}
+
+public extension MoyaProvider {
+    func requestPromise(_ target: Target) -> Promise<Moya.Response> {
+        return Promise<Moya.Response> { seal in
+            self.request(target, completion: { (result) in
+                switch result {
+                case let .success(moyaResponse):
+                    guard moyaResponse.statusCode == 200 else {
+                        seal.reject(NSError(domain: "\(moyaResponse.statusCode)", code: moyaResponse.statusCode, userInfo: ["response_message": "Response message from server"]))
+                        return;
+                    }
+                                                        
+                    seal.fulfill(moyaResponse)
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            })
+        }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 import Moya
+import PromiseKit
 
 
 struct AccountResponse: Codable {
@@ -156,27 +157,41 @@ final class DataStore: ObservableObject {
     }
     
     public func refreshState() {
-        provider.request(.query) { result in
-            switch result {
-            case let .success(moyaResponse):
-                let data = moyaResponse.data
-                let statusCode = moyaResponse.statusCode
-                
-                do {
-                    self.state.connection = try moyaResponse.map(ConnectionState.self)
-                } catch {
-                    print(error)
-                }
-                print("---- done")
-                self.isInitialized = true;
-            
-            case let .failure(error):
-                // this means there was a network failure - either the request
-                // wasn't sent (connectivity), or no response was received (server
-                // timed out).  If the server responds with a 4xx or 5xx error, that
-                // will be sent as a ".success"-ful response.
-                print("Error, request failed")
+        firstly {
+            provider.requestPromise(.query)
+        }.then { queryResponse -> Promise<Void> in
+            do {
+                self.state.connection = try queryResponse.map(ConnectionState.self)
+            } catch {
+                print(error)
             }
+            
+            self.isInitialized = true;
+            
+            return self.fetchIfNecessary()
+        }.catch { err in
+            print("Error", err)
         }
    }
+    
+    // This will fetch a new photo if we are told there is one.
+    public func fetchIfNecessary() -> Promise<Void> {
+        if (self.state.connection?.shouldFetch ?? false) {
+            print("ok, fetching remote payload")
+            return firstly {
+                provider.requestPromise(.get)
+            }.done { fetchResponse in
+                print("payload fetched, writing it to file.")
+                let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
+                do {
+                    try fetchResponse.data.write(to: destinationFileUrl)
+                }
+                catch {
+                   print("Failed to save file")
+                }
+            }
+        }
+        
+        return Promise.value(())
+    }
 }
