@@ -9,24 +9,22 @@ import SwiftUI
 import UIKit
 
 struct ContentView: View {
+
+    private var dataStore: DataStore;
     
-    @State private var isConnected: Bool = false
-    @EnvironmentObject var dataStore: DataStore;
-    
-    init() {
+    init(dataStore: DataStore) {
+        self.dataStore = dataStore;
+        self.dataStore.ensureAccount()
     }
     
     @ViewBuilder
     var body: some View {
         VStack(spacing: 20) {
-            HStack {
-                Button(action: refresh) {
-                    Text("Test").background(Color.yellow)
-                }
-            }.padding(10)
-            Divider()
             VStack() {
-                if self.isConnected {
+                if !self.dataStore.isInitialized {
+                    Text("still loading...")
+                }
+                else if self.dataStore.state.connection != nil {
                    ConnectedScreen()
                 } else {
                    NotConnectedScreen()
@@ -77,7 +75,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(dataStore: DataStore())
     }
 }
 

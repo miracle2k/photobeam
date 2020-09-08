@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */; };
 		4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDA24A3698900B990DF /* AppDelegate.swift */; };
 		4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */; };
 		4C0F8BDF24A3698900B990DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDE24A3698900B990DF /* ContentView.swift */; };
@@ -26,6 +27,8 @@
 		4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161024DAFCEB0037AD0D /* DataStore.swift */; };
 		4CB4161624DAFF490037AD0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161524DAFF490037AD0D /* API.swift */; };
 		4CB4161924DB017A0037AD0D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB4161824DB017A0037AD0D /* Moya */; };
+		4CF37A9625079F4B00FB8FFF /* StandardImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */; };
+		4CF37A982507BACF00FB8FFF /* YPImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,11 @@
 		4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedScreen.swift; sourceTree = "<group>"; };
 		4CB4161024DAFCEB0037AD0D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4CB4161524DAFF490037AD0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardImagePicker.swift; sourceTree = "<group>"; };
+		4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPImagePicker.swift; sourceTree = "<group>"; };
+		77CBB19153879AD5B69F861A /* Pods-photobeam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photobeam.release.xcconfig"; path = "Target Support Files/Pods-photobeam/Pods-photobeam.release.xcconfig"; sourceTree = "<group>"; };
+		9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photobeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB57CC093F13798C718BF5B2 /* Pods-photobeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photobeam.debug.xcconfig"; path = "Target Support Files/Pods-photobeam/Pods-photobeam.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
+				2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +148,7 @@
 				4C0F8C1424A369A500B990DF /* BeamWidget */,
 				4C0F8C0F24A369A500B990DF /* Frameworks */,
 				4C0F8BD824A3698900B990DF /* Products */,
+				58E311DC10F72CCBD9648458 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +179,8 @@
 				4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */,
 				4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */,
 				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
+				4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */,
+				4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */,
 			);
 			path = photobeam;
 			sourceTree = "<group>";
@@ -204,6 +216,7 @@
 			children = (
 				4C0F8C1024A369A500B990DF /* WidgetKit.framework */,
 				4C0F8C1224A369A500B990DF /* SwiftUI.framework */,
+				9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,6 +231,15 @@
 			path = BeamWidget;
 			sourceTree = "<group>";
 		};
+		58E311DC10F72CCBD9648458 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB57CC093F13798C718BF5B2 /* Pods-photobeam.debug.xcconfig */,
+				77CBB19153879AD5B69F861A /* Pods-photobeam.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,10 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0F8C0124A3698A00B990DF /* Build configuration list for PBXNativeTarget "photobeam" */;
 			buildPhases = (
+				51BBA37C77C7C06C8ECBD667 /* [CP] Check Pods Manifest.lock */,
 				4C0F8BD324A3698900B990DF /* Sources */,
 				4C0F8BD424A3698900B990DF /* Frameworks */,
 				4C0F8BD524A3698900B990DF /* Resources */,
 				4C0F8C2024A369A600B990DF /* Embed App Extensions */,
+				7582ED427DE7C79EDAE22811 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -380,6 +404,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		51BBA37C77C7C06C8ECBD667 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-photobeam-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7582ED427DE7C79EDAE22811 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4C0F8BD324A3698900B990DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -387,7 +453,9 @@
 			files = (
 				4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */,
 				4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */,
+				4CF37A9625079F4B00FB8FFF /* StandardImagePicker.swift in Sources */,
 				4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */,
+				4CF37A982507BACF00FB8FFF /* YPImagePicker.swift in Sources */,
 				4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */,
 				4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */,
 				4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */,
@@ -570,6 +638,7 @@
 		};
 		4C0F8C0224A3698A00B990DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB57CC093F13798C718BF5B2 /* Pods-photobeam.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -593,6 +662,7 @@
 		};
 		4C0F8C0324A3698A00B990DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77CBB19153879AD5B69F861A /* Pods-photobeam.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

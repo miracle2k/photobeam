@@ -9,7 +9,6 @@ import SwiftUI
 import Moya
 
 struct NotConnectedScreen: View {
-    @State private var connectCode: String = "f34ds34"
     @State private var text: String = ""
     @State private var showingAlert = false
     @EnvironmentObject var dataStore: DataStore;
@@ -18,7 +17,7 @@ struct NotConnectedScreen: View {
     var body: some View {
         VStack {
             Text("You are not connected to anyone.")
-            Text("Code for others to connect to you: " + connectCode)
+            Text("Code for others to connect to you: " + (dataStore.state.account?.connectCode ?? ""))
             TextField("Foobar", text: $text).multilineTextAlignment(TextAlignment.center)
             Button(action: handleButtonClick) {
                 Text("Connect!")

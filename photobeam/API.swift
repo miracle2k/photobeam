@@ -12,6 +12,7 @@ public enum PhotoBeamService {
     case register
     case connect(code: String)
     case query
+    case set(data: Data)
 //    case showUser(id: Int)
 //    case createUser(firstName: String, lastName: String)
 //    case updateUser(id: Int, firstName: String, lastName: String)
@@ -29,6 +30,8 @@ extension PhotoBeamService: TargetType {
             return "/connect"
         case .query:
             return "/query"
+        case .set:
+            return "/set"
 //        case .createUser(_, _):
 //            return "/users"
 //        case .showAccounts:
@@ -47,6 +50,11 @@ extension PhotoBeamService: TargetType {
             return .requestPlain
         case .connect(let code):
             return .requestParameters(parameters: ["connectCode": code], encoding: JSONEncoding.default)
+        case .set(let data):
+            let fileData = MultipartFormData(provider: .data(data), name: "file", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData = [fileData]
+            return .uploadMultipart(multipartData)
+            
 //        case let .updateUser(_, firstName, lastName):  // Always sends parameters in URL, regardless of which HTTP method is used
 //            return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: URLEncoding.queryString)
 //        case let .createUser(firstName, lastName): // Always send parameters as JSON in request body
@@ -56,7 +64,7 @@ extension PhotoBeamService: TargetType {
     
     public var sampleData: Data {
         switch self {
-        case .register, .connect, .query:
+        case .register, .connect, .query, .set:
             return "Half measures are as bad as nothing at all.".utf8Encoded
 //        case .showUser(let id):
 //            return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
