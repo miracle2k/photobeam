@@ -172,7 +172,7 @@ final class DataStore: ObservableObject {
         }.catch { err in
             print("Error", err)
         }
-   }
+    }
     
     // This will fetch a new photo if we are told there is one.
     public func fetchIfNecessary() -> Promise<Void> {
@@ -180,7 +180,7 @@ final class DataStore: ObservableObject {
             print("ok, fetching remote payload")
             return firstly {
                 provider.requestPromise(.get)
-            }.done { fetchResponse in
+            }.then { (fetchResponse: Moya.Response) -> Guarantee<Void> in
                 print("payload fetched, writing it to file.")
                 let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
                 do {
@@ -189,6 +189,11 @@ final class DataStore: ObservableObject {
                 catch {
                    print("Failed to save file")
                 }
+//
+                return Guarantee.value(())
+            }.then { (response: Void) -> Promise<Void> in
+                print("Calling clear payload")
+                return self.provider.requestPromise(.clear).map { _ in () }
             }
         }
         

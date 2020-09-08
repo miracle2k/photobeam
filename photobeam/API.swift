@@ -15,6 +15,7 @@ public enum PhotoBeamService {
     case query
     case set(data: Data)
     case get
+    case clear
 //    case showUser(id: Int)
 //    case createUser(firstName: String, lastName: String)
 //    case updateUser(id: Int, firstName: String, lastName: String)
@@ -36,6 +37,8 @@ extension PhotoBeamService: TargetType {
             return "/set"
         case .get:
             return "/get"
+        case .clear:
+            return "/clear"
         }
     }
     public  var method: Moya.Method {
@@ -46,7 +49,7 @@ extension PhotoBeamService: TargetType {
     }
     public var task: Task {
         switch self {
-        case .register, .query, .get:
+        case .register, .query, .get, .clear:
             return .requestPlain
         case .connect(let code):
             return .requestParameters(parameters: ["connectCode": code], encoding: JSONEncoding.default)
@@ -64,7 +67,7 @@ extension PhotoBeamService: TargetType {
     
     public var sampleData: Data {
         switch self {
-        case .register, .connect, .query, .set, .get:
+        case .register, .connect, .query, .set, .get, .clear:
             return "Half measures are as bad as nothing at all.".utf8Encoded
 //        case .showUser(let id):
 //            return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
