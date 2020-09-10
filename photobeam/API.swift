@@ -12,6 +12,7 @@ import PromiseKit
 public enum PhotoBeamService {
     case register
     case connect(code: String)
+    case accept(peerId: Int, shouldAccept: Bool)
     case query
     case set(data: Data)
     case get
@@ -34,8 +35,10 @@ extension PhotoBeamService: TargetType {
         switch self {
         case .register:
             return "/register"
-        case .connect(let id):
+        case .connect:
             return "/connect"
+        case .accept:
+            return "/accept"
         case .query:
             return "/query"
         case .set:
@@ -60,6 +63,8 @@ extension PhotoBeamService: TargetType {
             return .requestPlain
         case .connect(let code):
             return .requestParameters(parameters: ["connectCode": code], encoding: JSONEncoding.default)
+        case .accept(let peerId, let shouldAccept):
+            return .requestParameters(parameters: ["peerId": peerId, "accept": shouldAccept], encoding: JSONEncoding.default)
         case .set(let data):
             let fileData = MultipartFormData(provider: .data(data), name: "file", fileName: "image.jpeg", mimeType: "image/jpeg")
             let multipartData = [fileData]
@@ -74,7 +79,7 @@ extension PhotoBeamService: TargetType {
     
     public var sampleData: Data {
         switch self {
-        case .register, .connect, .query, .set, .get, .clear, .disconnect:
+        case .register, .connect, .query, .set, .get, .clear, .disconnect, .accept:
             return "Half measures are as bad as nothing at all.".utf8Encoded
 //        case .showUser(let id):
 //            return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded

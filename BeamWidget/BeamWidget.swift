@@ -11,57 +11,48 @@ import Intents
 
 
 struct Provider: TimelineProvider {
-    public func snapshot(with context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+    func getSnapshot(in context: Context, completion: @escaping (ShowFrameEntry) -> Void) {
+        let entry = ShowFrameEntry(date: Date(), isEmpty: true)
         completion(entry)
     }
-
-    public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<ShowFrameEntry>) -> Void) {
+        let entry = ShowFrameEntry(date: Date(), isEmpty: true)
+        let entries: [ShowFrameEntry] = [entry]
+        let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
-    
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        
+    func placeholder(in context: Context) -> ShowFrameEntry {
+        ShowFrameEntry(date: Date(), isEmpty: true)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ShowFrameEntry: TimelineEntry {
     public let date: Date
+    public let isEmpty: Bool
 }
 
-struct PlaceholderView : View {
-    var body: some View {
-        Text("Placeholder View")
-    }
-}
-
-struct WidgetEntryView : View {
-    var entry: Provider.Entry
-//    var loader: ImageLoader;
-//
-//    init() {
-//        loader = ImageLoader(url: "https://images.unsplash.com/photo-1592945843838-c69fc7dacb08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80");
-//    }
+struct FrameView : View {
+    var entry: ShowFrameEntry;
 
     let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
     
     var body: some View {
-        VStack {
-            Image(uiImage: UIImage(contentsOfFile: destinationFileUrl.path)!)
-                .resizable()
-                .scaledToFit()
+        switch entry.isEmpty {
+        case false:
+            VStack {
+                Image(uiImage: UIImage(contentsOfFile: destinationFileUrl.path)!)
+                    .resizable()
+                    .scaledToFit()
+            }
+        case true:
+            VStack {
+                Text("Not Connected").bold().padding(.bottom, 5)
+                Text("Launch the app to connect to your partner.").font(.system(size: 14)).multilineTextAlignment(.center)
+            }.padding(10)
         }
+        
     }
 }
 
@@ -71,10 +62,10 @@ struct BeamWidget: SwiftUI.Widget {
 
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            WidgetEntryView(entry: entry)
+            FrameView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("PhotoBeam")
+        .description("This is the photo beam widget")
     }
 }
 
@@ -87,19 +78,4 @@ struct Widget_Previews: PreviewProvider {
 
 func getDocumentsDirectory() -> URL {
     return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.elsdoerfer.photobeam")!;
-    
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    
-    do {
-        let items = try FileManager.default.contentsOfDirectory(at: paths[0].absoluteURL, includingPropertiesForKeys: nil, options: [])
-
-        for item in items {
-            print("Found \(item)")
-        }
-    } catch {
-        // failed to read directory – bad permissions, perhaps?
-    }
-    
-    print(paths[0])
-    return paths[0]
 }

@@ -22,6 +22,12 @@
 		4C0F8C1824A369A600B990DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1724A369A600B990DF /* Assets.xcassets */; };
 		4C0F8C1C24A369A600B990DF /* BeamWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C2124A369CE00B990DF /* ImageLoader.swift */; };
+		4C7C759F250823A7001EE8CB /* BeamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* BeamButton.swift */; };
+		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
+		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
+		4C7C75A5250906A3001EE8CB /* ConnectScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A4250906A3001EE8CB /* ConnectScreen.swift */; };
+		4C7C75A725091124001EE8CB /* WaitForAcceptScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A625091124001EE8CB /* WaitForAcceptScreen.swift */; };
+		4C7C75A925092032001EE8CB /* ConfirmRequestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A825092032001EE8CB /* ConfirmRequestScreen.swift */; };
 		4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */; };
 		4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */; };
 		4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161024DAFCEB0037AD0D /* DataStore.swift */; };
@@ -92,6 +98,13 @@
 		4C0F8C1924A369A600B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8C2124A369CE00B990DF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4C0F8C2324A3743300B990DF /* photobeam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = photobeam.entitlements; sourceTree = "<group>"; };
+		4C7C759E250823A7001EE8CB /* BeamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamButton.swift; sourceTree = "<group>"; };
+		4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
+		4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSimple.swift; sourceTree = "<group>"; };
+		4C7C75A4250906A3001EE8CB /* ConnectScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectScreen.swift; sourceTree = "<group>"; };
+		4C7C75A625091124001EE8CB /* WaitForAcceptScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForAcceptScreen.swift; sourceTree = "<group>"; };
+		4C7C75A825092032001EE8CB /* ConfirmRequestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmRequestScreen.swift; sourceTree = "<group>"; };
+		4C81440D250AD66C009B165D /* BeamWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeamWidgetExtension.entitlements; sourceTree = "<group>"; };
 		4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotConnectedScreen.swift; sourceTree = "<group>"; };
 		4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedScreen.swift; sourceTree = "<group>"; };
 		4CB4161024DAFCEB0037AD0D /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -142,6 +155,7 @@
 		4C0F8BCE24A3698900B990DF = {
 			isa = PBXGroup;
 			children = (
+				4C81440D250AD66C009B165D /* BeamWidgetExtension.entitlements */,
 				4C0F8BD924A3698900B990DF /* photobeam */,
 				4C0F8BF024A3698A00B990DF /* photobeamTests */,
 				4C0F8BFB24A3698A00B990DF /* photobeamUITests */,
@@ -181,6 +195,12 @@
 				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
 				4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */,
 				4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */,
+				4C7C759E250823A7001EE8CB /* BeamButton.swift */,
+				4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */,
+				4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */,
+				4C7C75A4250906A3001EE8CB /* ConnectScreen.swift */,
+				4C7C75A625091124001EE8CB /* WaitForAcceptScreen.swift */,
+				4C7C75A825092032001EE8CB /* ConfirmRequestScreen.swift */,
 			);
 			path = photobeam;
 			sourceTree = "<group>";
@@ -451,15 +471,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7C75A5250906A3001EE8CB /* ConnectScreen.swift in Sources */,
 				4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */,
 				4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */,
+				4C7C75A725091124001EE8CB /* WaitForAcceptScreen.swift in Sources */,
 				4CF37A9625079F4B00FB8FFF /* StandardImagePicker.swift in Sources */,
 				4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */,
 				4CF37A982507BACF00FB8FFF /* YPImagePicker.swift in Sources */,
 				4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */,
+				4C7C759F250823A7001EE8CB /* BeamButton.swift in Sources */,
 				4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */,
+				4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */,
 				4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */,
+				4C7C75A925092032001EE8CB /* ConfirmRequestScreen.swift in Sources */,
 				4CB4161624DAFF490037AD0D /* API.swift in Sources */,
+				4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */,
 				4C0F8BDF24A3698900B990DF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +799,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BeamWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QB7XH3QZBY;
 				INFOPLIST_FILE = BeamWidget/Info.plist;
@@ -794,6 +821,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BeamWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QB7XH3QZBY;
 				INFOPLIST_FILE = BeamWidget/Info.plist;

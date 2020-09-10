@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ConnectedScreen: View {
+struct ConnectedScreen: AppScreen {
+    var backgroundColor: Color = Color.blue;
     @EnvironmentObject var dataStore: DataStore;
     @State private var presented = false
 

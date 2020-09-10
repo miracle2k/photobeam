@@ -44,6 +44,8 @@ final class DataStore: ObservableObject {
     // If the state has been loaded a single time at least.
     @Published var isInitialized = false;
     
+    var timer: Timer?
+    
     private var subscribers = Set<AnyCancellable>()
     init() {
         let currentState = NSUbiquitousKeyValueStore.default.data(forKey: "state")
@@ -76,6 +78,12 @@ final class DataStore: ObservableObject {
             catch {
             }
         }.store(in: &subscribers)
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
+    }
+    
+    @objc func loop() {
+        self.refreshState();
     }
     
     // We have to do it now.
@@ -149,6 +157,26 @@ final class DataStore: ObservableObject {
     public func disconnect() {
         firstly {
             provider.requestPromise(.disconnect)
+        }.then { queryResponse -> Promise<Void> in
+            do {
+                self.state.connection = try queryResponse.map(ConnectionState.self)
+            } catch {
+                print(error)
+            }
+            
+            return Promise.value(());
+        }.catch { err in
+            print("Error", err)
+        }
+    }
+    
+    public func respondToConnectionRequest(shouldAccept: Bool) {
+        guard let peerId = self.state.connection?.peerId else {
+            return
+        }
+        
+        firstly {
+            provider.requestPromise(.accept(peerId: peerId, shouldAccept: shouldAccept))
         }.then { queryResponse -> Promise<Void> in
             do {
                 self.state.connection = try queryResponse.map(ConnectionState.self)
