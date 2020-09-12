@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import Moya
 import PromiseKit
+import WidgetKit
 
 
 struct AccountResponse: Codable {
@@ -60,7 +61,8 @@ final class DataStore: ObservableObject {
     
     private var subscribers = Set<AnyCancellable>()
     init() {
-        let currentState = NSUbiquitousKeyValueStore.default.data(forKey: "state")
+        // NSUbiquitousKeyValueStore
+        let currentState = UserDefaults.standard.data(forKey: "state")
         if let data = currentState {
             do {
                 let state = try JSONDecoder().decode(DataState.self, from: data)
@@ -81,10 +83,10 @@ final class DataStore: ObservableObject {
             do {
                 let encoded = try JSONEncoder().encode($0)
                 print("Writing state to storage")
-                NSUbiquitousKeyValueStore.default.set(encoded, forKey: "state")
-                NSUbiquitousKeyValueStore.default.synchronize()
+                UserDefaults.standard.set(encoded, forKey: "state")
+                //NSUserDefaults.default.synchronize()
                 
-                let currentState = NSUbiquitousKeyValueStore.default.data(forKey: "state")
+                let currentState = UserDefaults.standard.data(forKey: "state")
                 print(currentState)
             }
             catch {
@@ -248,14 +250,15 @@ final class DataStore: ObservableObject {
                 provider.requestPromise(.get)
             }.then { (fetchResponse: Moya.Response) -> Guarantee<Void> in
                 print("payload fetched, writing it to file.")
-                let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
                 do {
-                    try fetchResponse.data.write(to: destinationFileUrl)
+                    try fetchResponse.data.write(to: self.receivedUrl)
                 }
                 catch {
-                   print("Failed to save file")
+                    print("Failed to save file")
                 }
-//
+                
+                self.reloadImages()
+                WidgetCenter.shared.reloadTimelines(ofKind: "com.photobeam.widget")
                 return Guarantee.value(())
             }.then { (response: Void) -> Promise<Void> in
                 print("Calling clear payload")

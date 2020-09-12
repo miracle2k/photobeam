@@ -12,12 +12,15 @@ import Intents
 
 struct Provider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (ShowFrameEntry) -> Void) {
-        let entry = ShowFrameEntry(date: Date(), isEmpty: true)
+        let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
+        let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<ShowFrameEntry>) -> Void) {
-        let entry = ShowFrameEntry(date: Date(), isEmpty: true)
+        let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
+        let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
+        
         let entries: [ShowFrameEntry] = [entry]
         let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
@@ -35,16 +38,14 @@ struct ShowFrameEntry: TimelineEntry {
 
 struct FrameView : View {
     var entry: ShowFrameEntry;
-
-    let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
     
     var body: some View {
         switch entry.isEmpty {
         case false:
             VStack {
-                Image(uiImage: UIImage(contentsOfFile: destinationFileUrl.path)!)
+                Image(uiImage: UIImage(contentsOfFile: Paths.receivedUrl.path)!)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
             }
         case true:
             VStack {
