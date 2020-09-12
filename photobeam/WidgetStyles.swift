@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ * Button with round corners.
+ */
 struct FilledButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
@@ -18,6 +21,23 @@ struct FilledButton: ButtonStyle {
             .background(Color(#colorLiteral(red: 1, green: 0.2862745225429535, blue: 0.6196078658103943, alpha: 1)))
             .cornerRadius(35.5)
             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
+    }
+}
+
+/**
+ * Apply to something (and icon) to make a round button.
+ */
+struct RoundButton: ViewModifier {
+    let action: () -> Void;
+    
+    func body(content: Content) -> some View {
+        Button(action: self.action) {
+            content
+                .padding(10)
+                .background(Color(#colorLiteral(red: 1, green: 0.2862745225429535, blue: 0.6196078658103943, alpha: 1)))
+                .cornerRadius(35.5)
+                .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
+        }
     }
 }
 
@@ -35,16 +55,6 @@ extension Text {
 }
 
 
-struct FilledField: TextFieldStyle {
-    func _body(configuration: TextField<_Label>) -> some View {
-        configuration
-            .padding(20)
-            .background(Color(#colorLiteral(red: 0.9764705896377563, green: 0.7843137383460999, blue: 0.054901961237192154, alpha: 1)))
-            .cornerRadius(35.5)
-            .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
-    }
-}
-
 struct ButtonLikeRectangle: ViewModifier {
     func body(content: Content) -> some View {
         content.padding(20)
@@ -55,6 +65,9 @@ struct ButtonLikeRectangle: ViewModifier {
 }
 
 
+/**
+ * Apply this to a text field.
+ */
 struct TextFieldWithButton: ViewModifier {
     let action: () -> Void;
     

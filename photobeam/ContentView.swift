@@ -28,6 +28,7 @@ struct ContentView: View {
         if (self.dataStore.state.connection?.peerId ?? 0) != 0 {
             if (self.dataStore.state.connection?.status == "connected") {
                 return ScreenDefinition(
+                    id: "connected",
                     backgroundColor: MyColors.blue,
                     righthandColor: MyColors.blue,
                     screen: AnyView(ConnectedScreen())
@@ -35,6 +36,7 @@ struct ContentView: View {
             }
             else if (self.dataStore.state.connection?.status == "pendingWithMe") {
                 return ScreenDefinition(
+                    id: "confirm-request",
                     backgroundColor: MyColors.yellow,
                     righthandColor: MyColors.blue,
                     screen: AnyView(ConfirmRequestScreen())
@@ -42,6 +44,7 @@ struct ContentView: View {
             }
             else {
                 return ScreenDefinition(
+                    id: "await-accept",
                     backgroundColor: MyColors.yellow,
                     righthandColor: MyColors.blue,
                     screen: AnyView(WaitForAcceptScreen())
@@ -49,9 +52,10 @@ struct ContentView: View {
             }
         } else {
             return ScreenDefinition(
+                id: "not-connected",
                 backgroundColor: MyColors.purple,
                 righthandColor: MyColors.pink,
-                screen: AnyView(ConnectScreen())
+                screen: AnyView(NotConnectedScreen())
             )
         }
     }

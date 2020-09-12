@@ -49,7 +49,12 @@ struct NotConnectedScreen: AppScreen {
     
     func goToNextClick() {
         DispatchQueue.main.async {
-            self.navigationStack.push(ConnectScreen())
+            self.navigationStack.push(ScreenDefinition(
+                id: "connect",
+                backgroundColor: MyColors.pink,
+                righthandColor: MyColors.yellow,
+                screen: AnyView(ConnectScreen())
+            ))
         }
     }
 }

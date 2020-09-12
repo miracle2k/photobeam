@@ -41,8 +41,12 @@ final class DataStore: ObservableObject {
     
     // This is the last known account state
     @Published var state = DataState(account: nil, connection: nil);
+    
     // If the state has been loaded a single time at least.
     @Published var isInitialized = false;
+    
+    // If we are currently uploading something
+    @Published var isUploading = false;
     
     var timer: Timer?
     
@@ -131,26 +135,21 @@ final class DataStore: ObservableObject {
         }
     }
     
-    public func setImage(image: UIImage) {
-        provider.request(.set(data: image.jpegData(compressionQuality: 0.9)!)) { result in
-            switch result {
-            case let .success(moyaResponse):
-                let data = moyaResponse.data
-                let statusCode = moyaResponse.statusCode
-                
-                do {
-                    self.state.account = try moyaResponse.map(AccountResponse.self)
-                } catch {
-                    print(error)
-                }
-                // do something with the response data or statusCode
-            case let .failure(error):
-                // this means there was a network failure - either the request
-                // wasn't sent (connectivity), or no response was received (server
-                // timed out).  If the server responds with a 4xx or 5xx error, that
-                // will be sent as a ".success"-ful response.
-                print("Error, request failed")
+    /**
+     * Upload an image.
+     */
+    public func setImage(image: UIImage) -> Promise<Void>  {
+        self.isUploading = true;
+        return firstly {
+            provider.requestPromise(.set(data: image.jpegData(compressionQuality: 0.9)!))
+        }.done { moyaResponse in
+            do {
+                self.state.account = try moyaResponse.map(AccountResponse.self)
+            } catch {
+                print(error)
             }
+        }.ensure {
+            self.isUploading = false;
         }
     }
     

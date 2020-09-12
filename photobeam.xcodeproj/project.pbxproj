@@ -22,6 +22,8 @@
 		4C0F8C1824A369A600B990DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1724A369A600B990DF /* Assets.xcassets */; };
 		4C0F8C1C24A369A600B990DF /* BeamWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C0F8C2224A369CE00B990DF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C2124A369CE00B990DF /* ImageLoader.swift */; };
+		4C464619250D0F0F0029CEC1 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C464618250D0E8E0029CEC1 /* LottieView.swift */; };
+		4C46461C250D16D60029CEC1 /* connecting.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C46461B250D16D60029CEC1 /* connecting.json */; };
 		4C7C759F250823A7001EE8CB /* WidgetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* WidgetStyles.swift */; };
 		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
 		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
@@ -29,6 +31,7 @@
 		4C7C75A725091124001EE8CB /* WaitForAcceptScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A625091124001EE8CB /* WaitForAcceptScreen.swift */; };
 		4C7C75A925092032001EE8CB /* ConfirmRequestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A825092032001EE8CB /* ConfirmRequestScreen.swift */; };
 		4C814410250BCF72009B165D /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 4C81440F250BCF72009B165D /* YPImagePicker */; };
+		4C814413250D0AFA009B165D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4C814412250D0AFA009B165D /* Lottie */; };
 		4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */; };
 		4CB4160F24DAF5960037AD0D /* ConnectedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */; };
 		4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161024DAFCEB0037AD0D /* DataStore.swift */; };
@@ -99,6 +102,8 @@
 		4C0F8C1924A369A600B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8C2124A369CE00B990DF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4C0F8C2324A3743300B990DF /* photobeam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = photobeam.entitlements; sourceTree = "<group>"; };
+		4C464618250D0E8E0029CEC1 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		4C46461B250D16D60029CEC1 /* connecting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = connecting.json; path = ../../../../../Downloads/connecting.json; sourceTree = "<group>"; };
 		4C7C759E250823A7001EE8CB /* WidgetStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetStyles.swift; sourceTree = "<group>"; };
 		4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
 		4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSimple.swift; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
 				4C814410250BCF72009B165D /* YPImagePicker in Frameworks */,
 				2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */,
+				4C814413250D0AFA009B165D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,18 +188,19 @@
 		4C0F8BD924A3698900B990DF /* photobeam */ = {
 			isa = PBXGroup;
 			children = (
+				4C46461A250D16B20029CEC1 /* Assets */,
 				4CB4161524DAFF490037AD0D /* API.swift */,
 				4C0F8C2324A3743300B990DF /* photobeam.entitlements */,
 				4C0F8BDA24A3698900B990DF /* AppDelegate.swift */,
 				4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */,
 				4C0F8BDE24A3698900B990DF /* ContentView.swift */,
-				4C0F8BE024A3698A00B990DF /* Assets.xcassets */,
 				4C0F8BE524A3698A00B990DF /* LaunchScreen.storyboard */,
 				4C0F8BE824A3698A00B990DF /* Info.plist */,
 				4C0F8BE224A3698A00B990DF /* Preview Content */,
 				4C0F8C2124A369CE00B990DF /* ImageLoader.swift */,
 				4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */,
 				4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */,
+				4C464618250D0E8E0029CEC1 /* LottieView.swift */,
 				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
 				4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */,
 				4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */,
@@ -253,6 +260,15 @@
 			path = BeamWidget;
 			sourceTree = "<group>";
 		};
+		4C46461A250D16B20029CEC1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4C46461B250D16D60029CEC1 /* connecting.json */,
+				4C0F8BE024A3698A00B990DF /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		58E311DC10F72CCBD9648458 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +301,7 @@
 			packageProductDependencies = (
 				4CB4161824DB017A0037AD0D /* Moya */,
 				4C81440F250BCF72009B165D /* YPImagePicker */,
+				4C814412250D0AFA009B165D /* Lottie */,
 			);
 			productName = photobeam;
 			productReference = 4C0F8BD724A3698900B990DF /* photobeam.app */;
@@ -380,6 +397,7 @@
 			packageReferences = (
 				4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */,
 				4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 4C0F8BD824A3698900B990DF /* Products */;
 			projectDirPath = "";
@@ -401,6 +419,7 @@
 				4C0F8BE724A3698A00B990DF /* LaunchScreen.storyboard in Resources */,
 				4C0F8BE424A3698A00B990DF /* Preview Assets.xcassets in Resources */,
 				4C0F8BE124A3698A00B990DF /* Assets.xcassets in Resources */,
+				4C46461C250D16D60029CEC1 /* connecting.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7C75A5250906A3001EE8CB /* ConnectScreen.swift in Sources */,
+				4C464619250D0F0F0029CEC1 /* LottieView.swift in Sources */,
 				4CB4161124DAFCEB0037AD0D /* DataStore.swift in Sources */,
 				4CB4160D24DAF5760037AD0D /* NotConnectedScreen.swift in Sources */,
 				4C7C75A725091124001EE8CB /* WaitForAcceptScreen.swift in Sources */,
@@ -901,6 +921,14 @@
 				minimumVersion = 4.4.0;
 			};
 		};
+		4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
 		4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -916,6 +944,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */;
 			productName = YPImagePicker;
+		};
+		4C814412250D0AFA009B165D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		4CB4161824DB017A0037AD0D /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;

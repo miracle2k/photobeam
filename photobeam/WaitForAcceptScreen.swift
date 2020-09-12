@@ -10,15 +10,18 @@ import SwiftUI
 struct WaitForAcceptScreen: AppScreen {
     var backgroundColor: Color = Color.green;
     @EnvironmentObject var dataStore: DataStore;
+    @State var play: Int = 1;
     
     var body: some View {
         VStack {
-            Text("Waiting for Accept")
+            LottieView(name: "connecting", play: $play)
+                            .frame(width: 150, height: 150)
+            Text("Waiting for Accept").font(.system(size: 30))
             Button(action: {
                 self.dataStore.disconnect();
             }) {
-                Text("Disconnect")
-            }.buttonStyle(FilledButton())
+                Text("Cancel")
+            }.buttonStyle(FilledButton()).padding(.top, 50)
         }
     }
 }

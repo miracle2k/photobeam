@@ -11,6 +11,7 @@ import PromiseKit
 struct ConnectScreen: AppScreen {
     var backgroundColor: Color = Color.green;
     @EnvironmentObject var dataStore: DataStore;
+    @EnvironmentObject private var navigationStack: NavigationStack;
     @State private var text = ""
     @State private var isLoading = false
 
@@ -18,6 +19,7 @@ struct ConnectScreen: AppScreen {
     var body: some View {
         VStack(alignment: .leading) {
             VStack {
+                Button("go back") { navigationStack.pop()  } .buttonStyle(FilledButton())
             }
             VStack {
                 Spacer()
