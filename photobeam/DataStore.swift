@@ -48,6 +48,14 @@ final class DataStore: ObservableObject {
     // If we are currently uploading something
     @Published var isUploading = false;
     
+    // The image last sent
+    @Published var sentImage: UIImage?
+    @Published var receivedImage: UIImage?
+    
+    let toBeSentFileUrl = getDocumentsDirectory().appendingPathComponent("toBeSent.jpg")
+    let sentFileUrl = getDocumentsDirectory().appendingPathComponent("sent.jpg")
+    let receivedUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
+    
     var timer: Timer?
     
     private var subscribers = Set<AnyCancellable>()
@@ -84,10 +92,24 @@ final class DataStore: ObservableObject {
         }.store(in: &subscribers)
         
         self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
+        self.reloadImages()
     }
     
     @objc func loop() {
         self.refreshState();
+    }
+    
+    private func reloadImages() {
+        if (FileManager.default.fileExists(atPath: toBeSentFileUrl.path)) {
+            self.sentImage = UIImage(contentsOfFile: toBeSentFileUrl.path);
+        } else if FileManager.default.fileExists(atPath: sentFileUrl.path) {
+            self.sentImage = UIImage(contentsOfFile: sentFileUrl.path);
+        }
+                
+        if (FileManager.default.fileExists(atPath: receivedUrl.path)) {
+            self.receivedImage = UIImage(contentsOfFile: receivedUrl.path);
+        }
+        
     }
     
     // We have to do it now.
@@ -139,9 +161,20 @@ final class DataStore: ObservableObject {
      * Upload an image.
      */
     public func setImage(image: UIImage) -> Promise<Void>  {
+        // Save it as "to be sent".
+        let data = image.jpegData(compressionQuality: 0.9)!;
+        do {
+            try data.write(to: toBeSentFileUrl)
+            reloadImages()
+        }
+        catch {
+            print("Failed to save file")
+            return Promise.value(())
+        }
+        
         self.isUploading = true;
         return firstly {
-            provider.requestPromise(.set(data: image.jpegData(compressionQuality: 0.9)!))
+            provider.requestPromise(.set(data: data))
         }.done { moyaResponse in
             do {
                 self.state.account = try moyaResponse.map(AccountResponse.self)

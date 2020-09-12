@@ -63,21 +63,20 @@ struct ConnectedScreen: AppScreen {
 
 
 struct DoubleImageView: View {
-    let destinationFileUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
-    let lastSentFileUrl = getDocumentsDirectory().appendingPathComponent("sent.jpg")
+    @EnvironmentObject var dataStore: DataStore;
     @State private var isShowingSent = false
     
     var body: some View {
-        var filePath = isShowingSent ? lastSentFileUrl : destinationFileUrl;
+        var image = isShowingSent ? self.dataStore.sentImage : self.dataStore.receivedImage;
         var content: AnyView;
         
-        if (!FileManager.default.fileExists(atPath: filePath.path)) {
+        if (image == nil) {
             content = AnyView(Text("Does not exist").onTapGesture {
                 self.isShowingSent.toggle()
             })
         }
         else {
-            content = AnyView(Image(uiImage: UIImage(contentsOfFile: filePath.path)!)
+            content = AnyView(Image(uiImage: image!)
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(35.5)
