@@ -16,15 +16,19 @@ struct ConnectScreen: AppScreen {
 
     
     var body: some View {
-        VStack {
-            Text("Connection Code:")
-                .font(.custom("Roboto Medium", size: 20)).foregroundColor(Color(#colorLiteral(red: 0.28, green: 0.26, blue: 0.26, alpha: 1))).multilineTextAlignment(.center)
-            TextField("type something...", text: $text)
-                .textFieldStyle(SuperCustomTextFieldStyle())
-                .multilineTextAlignment(TextAlignment.center).autocapitalization(.none)
-            Button(action: handleButtonClick) { Text("Connect") }.buttonStyle(FilledButton())
-            if isLoading {
-                ProgressView()
+        VStack(alignment: .leading) {
+            VStack {
+            }
+            VStack {
+                Spacer()
+                Text("Add the code you received from your partner").font(.system(size: 26)).textStyle(LightStyle())
+                TextField("ABCDEFG", text: $text)
+                    .multilineTextAlignment(TextAlignment.center).autocapitalization(.none)
+                    .modifier(TextFieldWithButton(action: self.handleButtonClick))
+                if isLoading {
+                    ProgressView()
+                }
+                Spacer()
             }
         }.padding()
     }
@@ -41,13 +45,5 @@ struct ConnectScreen: AppScreen {
 struct ConnectScreen_Previews: PreviewProvider {
     static var previews: some View {
         ConnectScreen()
-    }
-}
-
-struct SuperCustomTextFieldStyle: TextFieldStyle {
-    func _body(configuration: TextField<_Label>) -> some View {
-        configuration
-            .padding()
-            .border(Color.accentColor)
     }
 }

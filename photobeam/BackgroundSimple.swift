@@ -26,7 +26,7 @@ struct BackgroundSimple: View {
                 minHeight: 0,
                 maxHeight: .infinity,
                 alignment: .topLeading
-        ).edgesIgnoringSafeArea(.top)
+        ).ignoresSafeArea()
     }
 }
 

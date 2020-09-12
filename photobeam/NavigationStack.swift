@@ -195,7 +195,7 @@ struct NavigationStackView: View {
                 .transition(NavigationTransition.defaultTransitions.push)
                 .id(currentViewId)
             currentView
-                .id(currentViewId + "foo")
+                .id(currentViewId + "_controls")
                 .transition(AnyTransition.opacity)
                 .environmentObject(navViewModel)
         }

@@ -51,7 +51,7 @@ struct ContentView: View {
             return ScreenDefinition(
                 backgroundColor: MyColors.purple,
                 righthandColor: MyColors.pink,
-                screen: AnyView(NotConnectedScreen())
+                screen: AnyView(ConnectScreen())
             )
         }
     }
@@ -73,8 +73,5 @@ struct ContentView_Previews: PreviewProvider {
 
 
 func getDocumentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.elsdoerfer.photobeam")!;
-//    print(paths[0])
-//    return paths[0]
 }

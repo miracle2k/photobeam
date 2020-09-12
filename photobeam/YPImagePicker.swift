@@ -16,11 +16,7 @@ struct YPBasedImagePicker: UIViewControllerRepresentable
     func makeUIViewController(context: Context) -> YPImagePicker {
         let picker = YPImagePicker()
         picker.delegate = context.coordinator
-        return picker
-        
-//        picker.didFinishPicking { [unowned picker] items, _ in
-//
-//        }
+        return picker    
     }
 
     func updateUIViewController(_ uiViewController: YPImagePicker, context: Context) {
@@ -54,15 +50,6 @@ struct YPBasedImagePicker: UIViewControllerRepresentable
             }
             parent.presentationMode.wrappedValue.dismiss()
         }
-        
-//        func imagePickerController(_ picker: YPImagePickerDelegate, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//            if let uiImage = info[.originalImage] as? UIImage {
-//                self.parent.imageSelected(uiImage);
-//                //parent.image = uiImage
-//            }
-//
-//            parent.presentationMode.wrappedValue.dismiss()
-//        }
     }
 
 }

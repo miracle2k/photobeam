@@ -38,6 +38,7 @@ struct ConnectedScreen: AppScreen {
     }
     
     func handlePhotoPicked(image: UIImage) {
+        // TODO: Show this upload progress in the UI
         self.dataStore.setImage(image: image);
         
     }
