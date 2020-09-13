@@ -6,10 +6,17 @@ struct LottieView: UIViewRepresentable {
         Coordinator(self)
     }
     
+    @State private var privateIsPlaying: Bool = false
+    
     var name: String!
-    @Binding var play: Int
+    var isPlaying: Binding<Bool>?
     
     var animationView = AnimationView()
+    
+    init(name: String, play: Binding<Bool>? = nil) {
+        self.name = name;
+        self.isPlaying = play;
+    }
 
     class Coordinator: NSObject {
         var parent: LottieView
@@ -39,6 +46,11 @@ struct LottieView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-        animationView.play()
+        var isP: Bool = isPlaying?.wrappedValue ?? true;
+        if (isP) {
+            animationView.play()
+        } else {
+            animationView.pause()
+        }
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 struct MyColors {
     static var purple = Color(#colorLiteral(red: 0.4000000059604645, green: 0.18039216101169586, blue: 0.6078431606292725, alpha: 1));
     static var pink = Color(#colorLiteral(red: 1, green: 0.2862745225429535, blue: 0.6196078658103943, alpha: 1))
-    static var yellow = Color(#colorLiteral(red: 0.9764705896377563, green: 0.7843137383460999, blue: 0.054901961237192154, alpha: 1))
+    static var yellow = Color(#colorLiteral(red: 0.9764705896377563, green: 0.7843137383460999, blue: 0.054901961237192154, alpha: 1))  // #f4c03c
     static var blue = Color(#colorLiteral(red: 0.26274511218070984, green: 0.7372549176216125, blue: 0.8039215803146362, alpha: 1));
 }
 
@@ -37,8 +37,8 @@ struct ContentView: View {
             else if (self.dataStore.state.connection?.status == "pendingWithMe") {
                 return ScreenDefinition(
                     id: "confirm-request",
-                    backgroundColor: MyColors.yellow,
-                    righthandColor: MyColors.blue,
+                    backgroundColor: MyColors.pink,
+                    righthandColor: MyColors.yellow,
                     screen: AnyView(ConfirmRequestScreen())
                 )
             }

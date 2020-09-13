@@ -13,17 +13,19 @@ struct ConfirmRequestScreen: View {
     
     var body: some View {
         VStack {
-            Text("You have a request, do you want to accept?")
-            Button(action: {
-                self.dataStore.respondToConnectionRequest(shouldAccept: true);
-            }) {
-                Text("yes")
-            }.buttonStyle(FilledButton())
-            Button(action: {
-                self.dataStore.respondToConnectionRequest(shouldAccept: false);
-            }) {
-                Text("no")
-            }.buttonStyle(FilledButton())
+            Text("You have an incoming connection request.\nDo you accept?").textStyle(LightStyle()).font(.system(size: 30))
+            HStack {
+                Button(action: {
+                    self.dataStore.respondToConnectionRequest(shouldAccept: true);
+                }) {
+                    Text("Accept")
+                }.buttonStyle(FilledButton(color: MyColors.yellow))
+                Button(action: {
+                    self.dataStore.respondToConnectionRequest(shouldAccept: false);
+                }) {
+                    Text("Cancel")
+                }.buttonStyle(FilledButton(color: MyColors.yellow))
+            }.padding(.top, 15)
         }
     }
 }

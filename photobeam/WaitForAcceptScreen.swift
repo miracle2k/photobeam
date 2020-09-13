@@ -10,7 +10,7 @@ import SwiftUI
 struct WaitForAcceptScreen: AppScreen {
     var backgroundColor: Color = Color.green;
     @EnvironmentObject var dataStore: DataStore;
-    @State var play: Int = 1;
+    @State var play: Bool = true;
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct WaitForAcceptScreen: AppScreen {
                 self.dataStore.disconnect();
             }) {
                 Text("Cancel")
-            }.buttonStyle(FilledButton()).padding(.top, 50)
+            }.buttonStyle(FilledButton(color: nil)).padding(.top, 50)
         }
     }
 }

@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = HostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -63,3 +63,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+//https://stackoverflow.com/questions/57063142/swiftui-status-bar-color
+class HostingController<Content>: UIHostingController<Content> where Content : View {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}

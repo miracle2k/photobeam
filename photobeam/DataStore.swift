@@ -192,11 +192,11 @@ final class DataStore: ObservableObject {
         firstly {
             provider.requestPromise(.disconnect)
         }.then { queryResponse -> Promise<Void> in
-            do {
-                self.state.connection = try queryResponse.map(ConnectionState.self)
-            } catch {
-                print(error)
-            }
+            self.state.connection = try queryResponse.map(ConnectionState.self)
+            
+            try? FileManager.default.removeItem(at: self.toBeSentFileUrl)
+            try? FileManager.default.removeItem(at: self.sentFileUrl)
+            try? FileManager.default.removeItem(at: self.receivedUrl)
             
             return Promise.value(());
         }.catch { err in
