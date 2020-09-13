@@ -238,7 +238,9 @@ final class DataStore: ObservableObject {
             
             return self.fetchIfNecessary()
         }.catch { err in
-            print("Error", err)
+            print("DataStore.refreshState(): failed with an error: ", err)
+            // Error 401=Unauthorized? Creating a new account automatically is an issue, but we
+            // might want to switch to an "unauthorized" state.
         }
     }
     

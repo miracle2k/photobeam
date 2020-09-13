@@ -26,6 +26,7 @@
 		4C46461F250D2BEC0029CEC1 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C46461E250D2BEC0029CEC1 /* Paths.swift */; };
 		4C464620250D2C020029CEC1 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C46461E250D2BEC0029CEC1 /* Paths.swift */; };
 		4C464622250E051D0029CEC1 /* connecting.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C464621250E051D0029CEC1 /* connecting.json */; };
+		4C464625250E0A4B0029CEC1 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 4C464624250E0A4B0029CEC1 /* SwiftUIPager */; };
 		4C7C759F250823A7001EE8CB /* WidgetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* WidgetStyles.swift */; };
 		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
 		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
@@ -132,6 +133,7 @@
 			files = (
 				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
 				4C814410250BCF72009B165D /* YPImagePicker in Frameworks */,
+				4C464625250E0A4B0029CEC1 /* SwiftUIPager in Frameworks */,
 				2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */,
 				4C814413250D0AFA009B165D /* Lottie in Frameworks */,
 			);
@@ -306,6 +308,7 @@
 				4CB4161824DB017A0037AD0D /* Moya */,
 				4C81440F250BCF72009B165D /* YPImagePicker */,
 				4C814412250D0AFA009B165D /* Lottie */,
+				4C464624250E0A4B0029CEC1 /* SwiftUIPager */,
 			);
 			productName = photobeam;
 			productReference = 4C0F8BD724A3698900B990DF /* photobeam.app */;
@@ -402,6 +405,7 @@
 				4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */,
 				4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 				4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = 4C0F8BD824A3698900B990DF /* Products */;
 			projectDirPath = "";
@@ -919,6 +923,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.11.0;
+			};
+		};
 		4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/BeautyExchange/YPImagePicker.git";
@@ -946,6 +958,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4C464624250E0A4B0029CEC1 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
 		4C81440F250BCF72009B165D /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */;

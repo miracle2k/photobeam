@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPager
 
 struct ConnectedScreen: AppScreen {
     var backgroundColor: Color = Color.blue;
@@ -28,7 +29,7 @@ struct ConnectedScreen: AppScreen {
             }.padding()
             Spacer()
             ZStack {
-                DoubleImageView()
+                DoubleImageView().padding()
                 if dataStore.isUploading {
                     ProgressView()
                 }
@@ -64,32 +65,42 @@ struct ConnectedScreen: AppScreen {
 
 struct DoubleImageView: View {
     @EnvironmentObject var dataStore: DataStore;
-    @State private var isShowingSent = false
+    @State var page: Int = 0
+    
+    var pages: [String] = [
+        "received", "sent"
+    ]
     
     var body: some View {
-        var image = isShowingSent ? self.dataStore.sentImage : self.dataStore.receivedImage;
+        return Pager(
+            page: $page,
+            data: pages,
+            id: \.self,
+            content: self.getPage).contentLoadingPolicy(.eager).itemSpacing(10)
+            .rotation3D()
+    }
+    
+    func getPage(index: String) -> some View {
+        // create a page based on the data passed
+        var image = index == "received" ? self.dataStore.sentImage : self.dataStore.receivedImage;
         var content: AnyView;
         
         if (image == nil) {
             content = AnyView(Text("Does not exist").onTapGesture {
-                self.isShowingSent.toggle()
+                
             })
         }
         else {
             content = AnyView(Image(uiImage: image!)
                 .resizable()
-                .scaledToFit()
-                .cornerRadius(35.5)
-                .padding()
-                .onTapGesture {
-                    self.isShowingSent.toggle()
-                })
+                .scaledToFit().background(Color.blue)
+                                // For some reason, without the padding, cornerRadius only works on same images???
+                                .padding(1)
+                                .cornerRadius(35)
+            )
         }
         
-        return Group {
-            content
-        }
-        
+        return Group { content }
     }
 }
 
