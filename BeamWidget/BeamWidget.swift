@@ -11,19 +11,81 @@ import Intents
 
 
 struct Provider: TimelineProvider {
+    private let urlSession: URLSession = {
+        let config = URLSessionConfiguration.background(withIdentifier: "MySession")
+        config.isDiscretionary = true
+        config.sessionSendsLaunchEvents = true
+        return URLSession(configuration: config)
+    }();
+    
     func getSnapshot(in context: Context, completion: @escaping (ShowFrameEntry) -> Void) {
+        // We must return the snapshot quickly, so we either return the current image, or a dummy.
         let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
         let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
         completion(entry)
     }
     
+    /**
+     * We return "refresh now", with policy=never. We then manually send a refresh request whenever we get a new picture, which itself
+     * is refreshed via a background task & push notification.
+     *
+     * We could try to use a Widget refresh policy (every hour?) for this, but iOS limits that (no idea to what frequency), and in general they
+     * do recommend a background fetch task:
+     * https://developer.apple.com/documentation/widgetkit/timelineprovider
+     * But the background fetch is also limited if the app is not opened often, could this be a problem for us? Also see the discussion here:
+     * https://developer.apple.com/forums/thread/659373
+     *
+     * However, I suppose we could try to set a policy to every couple of hours here as well, but that only makes sense if we also try to *fetch* here.
+     *
+     *
+     * ---
+     *
+     * Actually, do the query.
+     */
     func getTimeline(in context: Context, completion: @escaping (Timeline<ShowFrameEntry>) -> Void) {
-        let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
-        let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
+        // possibly do a query()
+        // then try to download the file right now
+        // later worry about the bg mode.
         
-        let entries: [ShowFrameEntry] = [entry]
-        let timeline = Timeline(entries: entries, policy: .never)
-        completion(timeline)
+        let store = DataStore(setupTimer: false, loadImages: false)
+        store.refreshState().done {
+            let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
+            let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
+            let entries: [ShowFrameEntry] = [entry]
+            let timeline = Timeline(entries: entries, policy: .after(
+                Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
+            ))
+            completion(timeline)
+        }.catch { err in
+            print("Error occured:", err)
+            
+        }
+        
+        // Relevant links:
+        // https://developer.apple.com/documentation/widgetkit/keeping-a-widget-up-to-date (section "Update After Background Network Requests Complete")
+//        let downloadTask = URLSession.shared.downloadTask(with: URL(string: "https://picsum.photos/400")!) { (url, response, error) in
+//            print("download complete")
+//            guard let fileURL = url else { return }
+//            do {
+//                _ = try FileManager.default.replaceItemAt(Paths.receivedUrl, withItemAt: fileURL)
+//            } catch {
+//                print ("file error: \(error)")
+//            }
+//
+//            let entry = ShowFrameEntry(date: Date(), isEmpty: false)
+//            let entries: [ShowFrameEntry] = [entry]
+//            let timeline = Timeline(entries: entries, policy: .after(
+//                Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
+//            ))
+//            completion(timeline)
+//        }
+//        downloadTask.resume();
+        
+//        let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
+//        let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
+//        let entries: [ShowFrameEntry] = [entry]
+//        let timeline = Timeline(entries: entries, policy: .never)
+//        completion(timeline)
     }
         
     func placeholder(in context: Context) -> ShowFrameEntry {
@@ -53,7 +115,6 @@ struct FrameView : View {
                 Text("Launch the app to connect to your partner.").font(.system(size: 14)).multilineTextAlignment(.center)
             }.padding(10)
         }
-        
     }
 }
 

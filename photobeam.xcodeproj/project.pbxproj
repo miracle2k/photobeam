@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */; };
+		4B441E5BFC51D8B85E06D4CB /* libPods-photobeam.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167AD5CFBF2A33A6F81C5B1 /* libPods-photobeam.a */; };
 		4C0F8BDB24A3698900B990DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDA24A3698900B990DF /* AppDelegate.swift */; };
 		4C0F8BDD24A3698900B990DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */; };
 		4C0F8BDF24A3698900B990DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BDE24A3698900B990DF /* ContentView.swift */; };
 		4C0F8BE124A3698A00B990DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8BE024A3698A00B990DF /* Assets.xcassets */; };
 		4C0F8BE424A3698A00B990DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8BE324A3698A00B990DF /* Preview Assets.xcassets */; };
 		4C0F8BE724A3698A00B990DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0F8BE524A3698A00B990DF /* LaunchScreen.storyboard */; };
-		4C0F8BF224A3698A00B990DF /* photobeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BF124A3698A00B990DF /* photobeamTests.swift */; };
-		4C0F8BFD24A3698A00B990DF /* photobeamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8BFC24A3698A00B990DF /* photobeamUITests.swift */; };
 		4C0F8C1124A369A500B990DF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0F8C1024A369A500B990DF /* WidgetKit.framework */; };
 		4C0F8C1324A369A500B990DF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0F8C1224A369A500B990DF /* SwiftUI.framework */; };
 		4C0F8C1624A369A500B990DF /* BeamWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F8C1524A369A500B990DF /* BeamWidget.swift */; };
@@ -27,6 +25,11 @@
 		4C464620250D2C020029CEC1 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C46461E250D2BEC0029CEC1 /* Paths.swift */; };
 		4C464622250E051D0029CEC1 /* connecting.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C464621250E051D0029CEC1 /* connecting.json */; };
 		4C464625250E0A4B0029CEC1 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 4C464624250E0A4B0029CEC1 /* SwiftUIPager */; };
+		4C492BC325140C4B007B1242 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BC225140C4B007B1242 /* PromiseKit */; };
+		4C492BC425140D55007B1242 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161024DAFCEB0037AD0D /* DataStore.swift */; };
+		4C492BC525140D70007B1242 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161524DAFF490037AD0D /* API.swift */; };
+		4C492BC725140EF4007B1242 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BC625140EF4007B1242 /* Moya */; };
+		4C492BC925140F02007B1242 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BC825140F02007B1242 /* PromiseKit */; };
 		4C7C759F250823A7001EE8CB /* WidgetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* WidgetStyles.swift */; };
 		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
 		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
@@ -83,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1167AD5CFBF2A33A6F81C5B1 /* libPods-photobeam.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-photobeam.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0F8BD724A3698900B990DF /* photobeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photobeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0F8BDA24A3698900B990DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,11 +96,7 @@
 		4C0F8BE624A3698A00B990DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0F8BE824A3698A00B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8BED24A3698A00B990DF /* photobeamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photobeamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C0F8BF124A3698A00B990DF /* photobeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photobeamTests.swift; sourceTree = "<group>"; };
-		4C0F8BF324A3698A00B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8BF824A3698A00B990DF /* photobeamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photobeamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C0F8BFC24A3698A00B990DF /* photobeamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photobeamUITests.swift; sourceTree = "<group>"; };
-		4C0F8BFE24A3698A00B990DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeamWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0F8C1024A369A500B990DF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4C0F8C1224A369A500B990DF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -122,7 +122,6 @@
 		4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardImagePicker.swift; sourceTree = "<group>"; };
 		4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPImagePicker.swift; sourceTree = "<group>"; };
 		77CBB19153879AD5B69F861A /* Pods-photobeam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photobeam.release.xcconfig"; path = "Target Support Files/Pods-photobeam/Pods-photobeam.release.xcconfig"; sourceTree = "<group>"; };
-		9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photobeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB57CC093F13798C718BF5B2 /* Pods-photobeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photobeam.debug.xcconfig"; path = "Target Support Files/Pods-photobeam/Pods-photobeam.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,10 +131,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
+				4C492BC325140C4B007B1242 /* PromiseKit in Frameworks */,
 				4C814410250BCF72009B165D /* YPImagePicker in Frameworks */,
 				4C464625250E0A4B0029CEC1 /* SwiftUIPager in Frameworks */,
-				2C5BBD96F49C7D2DDDEB723E /* Pods_photobeam.framework in Frameworks */,
 				4C814413250D0AFA009B165D /* Lottie in Frameworks */,
+				4B441E5BFC51D8B85E06D4CB /* libPods-photobeam.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +158,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0F8C1324A369A500B990DF /* SwiftUI.framework in Frameworks */,
+				4C492BC925140F02007B1242 /* PromiseKit in Frameworks */,
 				4C0F8C1124A369A500B990DF /* WidgetKit.framework in Frameworks */,
+				4C492BC725140EF4007B1242 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,10 +170,9 @@
 		4C0F8BCE24A3698900B990DF = {
 			isa = PBXGroup;
 			children = (
+				4CF3164725140A5600DACF23 /* Shared */,
 				4C81440D250AD66C009B165D /* BeamWidgetExtension.entitlements */,
 				4C0F8BD924A3698900B990DF /* photobeam */,
-				4C0F8BF024A3698A00B990DF /* photobeamTests */,
-				4C0F8BFB24A3698A00B990DF /* photobeamUITests */,
 				4C0F8C1424A369A500B990DF /* BeamWidget */,
 				4C0F8C0F24A369A500B990DF /* Frameworks */,
 				4C0F8BD824A3698900B990DF /* Products */,
@@ -194,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				4C46461A250D16B20029CEC1 /* Assets */,
-				4CB4161524DAFF490037AD0D /* API.swift */,
 				4C0F8C2324A3743300B990DF /* photobeam.entitlements */,
 				4C0F8BDA24A3698900B990DF /* AppDelegate.swift */,
 				4C0F8BDC24A3698900B990DF /* SceneDelegate.swift */,
@@ -206,7 +206,6 @@
 				4CB4160C24DAF5760037AD0D /* NotConnectedScreen.swift */,
 				4CB4160E24DAF5960037AD0D /* ConnectedScreen.swift */,
 				4C464618250D0E8E0029CEC1 /* LottieView.swift */,
-				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
 				4CF37A9525079F4B00FB8FFF /* StandardImagePicker.swift */,
 				4CF37A972507BACF00FB8FFF /* YPImagePicker.swift */,
 				4C7C759E250823A7001EE8CB /* WidgetStyles.swift */,
@@ -228,30 +227,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4C0F8BF024A3698A00B990DF /* photobeamTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C0F8BF124A3698A00B990DF /* photobeamTests.swift */,
-				4C0F8BF324A3698A00B990DF /* Info.plist */,
-			);
-			path = photobeamTests;
-			sourceTree = "<group>";
-		};
-		4C0F8BFB24A3698A00B990DF /* photobeamUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4C0F8BFC24A3698A00B990DF /* photobeamUITests.swift */,
-				4C0F8BFE24A3698A00B990DF /* Info.plist */,
-			);
-			path = photobeamUITests;
-			sourceTree = "<group>";
-		};
 		4C0F8C0F24A369A500B990DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				4C0F8C1024A369A500B990DF /* WidgetKit.framework */,
 				4C0F8C1224A369A500B990DF /* SwiftUI.framework */,
-				9A5EF9392D12E5A6354B8AB0 /* Pods_photobeam.framework */,
+				1167AD5CFBF2A33A6F81C5B1 /* libPods-photobeam.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,6 +256,15 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		4CF3164725140A5600DACF23 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4CB4161524DAFF490037AD0D /* API.swift */,
+				4CB4161024DAFCEB0037AD0D /* DataStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		58E311DC10F72CCBD9648458 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +286,6 @@
 				4C0F8BD424A3698900B990DF /* Frameworks */,
 				4C0F8BD524A3698900B990DF /* Resources */,
 				4C0F8C2024A369A600B990DF /* Embed App Extensions */,
-				7582ED427DE7C79EDAE22811 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,6 +298,7 @@
 				4C81440F250BCF72009B165D /* YPImagePicker */,
 				4C814412250D0AFA009B165D /* Lottie */,
 				4C464624250E0A4B0029CEC1 /* SwiftUIPager */,
+				4C492BC225140C4B007B1242 /* PromiseKit */,
 			);
 			productName = photobeam;
 			productReference = 4C0F8BD724A3698900B990DF /* photobeam.app */;
@@ -363,6 +353,10 @@
 			dependencies = (
 			);
 			name = BeamWidgetExtension;
+			packageProductDependencies = (
+				4C492BC625140EF4007B1242 /* Moya */,
+				4C492BC825140F02007B1242 /* PromiseKit */,
+			);
 			productName = BeamWidgetExtension;
 			productReference = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -406,6 +400,7 @@
 				4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 				4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 4C0F8BD824A3698900B990DF /* Products */;
 			projectDirPath = "";
@@ -478,23 +473,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7582ED427DE7C79EDAE22811 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-photobeam/Pods-photobeam-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -527,7 +505,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0F8BF224A3698A00B990DF /* photobeamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +512,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0F8BFD24A3698A00B990DF /* photobeamUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +520,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C464620250D2C020029CEC1 /* Paths.swift in Sources */,
+				4C492BC425140D55007B1242 /* DataStore.swift in Sources */,
+				4C492BC525140D70007B1242 /* API.swift in Sources */,
 				4C0F8C1624A369A500B990DF /* BeamWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,6 +909,14 @@
 				minimumVersion = 1.11.0;
 			};
 		};
+		4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.13.3;
+			};
+		};
 		4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/BeautyExchange/YPImagePicker.git";
@@ -962,6 +948,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
+		};
+		4C492BC225140C4B007B1242 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		4C492BC625140EF4007B1242 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CB4161724DB017A0037AD0D /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		4C492BC825140F02007B1242 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		4C81440F250BCF72009B165D /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;

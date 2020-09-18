@@ -34,7 +34,7 @@ struct DataState: Codable {
 
 final class DataStore: ObservableObject {
     // https://useyourloaf.com/blog/swift-lazy-property-initialization/
-    lazy var endpointClosure =  { (target: PhotoBeamService) -> Endpoint in
+    lazy var endpointClosure = { (target: PhotoBeamService) -> Endpoint in
         let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
         return defaultEndpoint.adding(newHTTPHeaderFields: ["Authorization": self.state.account?.authKey ?? ""])
     }
@@ -57,12 +57,14 @@ final class DataStore: ObservableObject {
     let sentFileUrl = getDocumentsDirectory().appendingPathComponent("sent.jpg")
     let receivedUrl = getDocumentsDirectory().appendingPathComponent("output.jpg")
     
+    let userDefaultsGroup = UserDefaults(suiteName: "group.com.elsdoerfer.photobeam")!
+    
     var timer: Timer?
     
     private var subscribers = Set<AnyCancellable>()
-    init() {
-        // NSUbiquitousKeyValueStore
-        let currentState = UserDefaults.standard.data(forKey: "state")
+    init(setupTimer: Bool = true, loadImages: Bool = true) {
+        // Load the last known state from disk.
+        let currentState = userDefaultsGroup.data(forKey: "state")
         if let data = currentState {
             do {
                 let state = try JSONDecoder().decode(DataState.self, from: data)
@@ -83,8 +85,7 @@ final class DataStore: ObservableObject {
             do {
                 let encoded = try JSONEncoder().encode($0)
                 print("Writing state to storage")
-                UserDefaults.standard.set(encoded, forKey: "state")
-                //NSUserDefaults.default.synchronize()
+                self.userDefaultsGroup.set(encoded, forKey: "state")
                 
                 let currentState = UserDefaults.standard.data(forKey: "state")
                 print(currentState)
@@ -93,8 +94,14 @@ final class DataStore: ObservableObject {
             }
         }.store(in: &subscribers)
         
-        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
-        self.reloadImages()
+        if (setupTimer) {
+            self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true);
+        }
+        
+        if (loadImages) {
+            // Load current images for the first time
+            self.reloadImages()
+        }
     }
     
     @objc func loop() {
@@ -114,34 +121,29 @@ final class DataStore: ObservableObject {
         
     }
     
-    // We have to do it now.
+    // Run this once at the beginning after creating the instance. Will either create an accout, or verify
+    // that the current account is still valid.
     public func ensureAccount() {
         // TODO: in this case, we probably want to refresh the account, ensure it is valid!
         if (state.account != nil) {
-            self.refreshState();
             self.isInitialized = true;
+            
+            // We want this in the background, logging us out if it happens...
+            self.refreshState();
             return;
         }
         
-        provider.request(.register) { result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    self.state.account = try moyaResponse.map(AccountResponse.self)
-                } catch {
-                    print(error)
-                }
-                
-                self.isInitialized = true;
-                
-                // do something with the response data or statusCode
-            case let .failure(error):
-                // this means there was a network failure - either the request
-                // wasn't sent (connectivity), or no response was received (server
-                // timed out).  If the server responds with a 4xx or 5xx error, that
-                // will be sent as a ".success"-ful response.
-                print("Error")
+        firstly {
+            provider.requestPromise(.register)
+        }.done { moyaResponse in
+            do {
+                self.state.account = try moyaResponse.map(AccountResponse.self)
+            } catch {
+                print(error)
+                return;
             }
+            
+            self.isInitialized = true;
         }
     }
     
@@ -192,6 +194,7 @@ final class DataStore: ObservableObject {
         firstly {
             provider.requestPromise(.disconnect)
         }.then { queryResponse -> Promise<Void> in
+            // Clean out state.
             self.state.connection = try queryResponse.map(ConnectionState.self)
             
             try? FileManager.default.removeItem(at: self.toBeSentFileUrl)
@@ -224,7 +227,8 @@ final class DataStore: ObservableObject {
         }
     }
     
-    public func refreshState() {
+    // Refresh the state from the server. If there is a new photo, go fetch it.
+    public func refreshState() -> Promise<Void> {
         firstly {
             provider.requestPromise(.query)
         }.then { queryResponse -> Promise<Void> in
@@ -236,16 +240,18 @@ final class DataStore: ObservableObject {
             
             self.isInitialized = true;
             
-            return self.fetchIfNecessary()
-        }.catch { err in
+            return self.fetchPeerImageIfNecessary()
+        }.recover { err -> Promise<Void> in
             print("DataStore.refreshState(): failed with an error: ", err)
             // Error 401=Unauthorized? Creating a new account automatically is an issue, but we
             // might want to switch to an "unauthorized" state.
+            
+            return Promise.value(())
         }
     }
     
     // This will fetch a new photo if we are told there is one.
-    public func fetchIfNecessary() -> Promise<Void> {
+    public func fetchPeerImageIfNecessary() -> Promise<Void> {
         if (self.state.connection?.shouldFetch ?? false) {
             print("ok, fetching remote payload")
             return firstly {
