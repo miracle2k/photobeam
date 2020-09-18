@@ -12,7 +12,7 @@ import Moya
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    static var sharedDataStore: DataStore?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let dataStore = DataStore();
+        SceneDelegate.sharedDataStore = dataStore;
         let contentView = ContentView(dataStore: dataStore).environmentObject(dataStore)
             
         // Register for remote notifications - do this only after the DataStore() instance has been created, for it to handle

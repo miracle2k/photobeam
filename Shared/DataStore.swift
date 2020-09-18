@@ -225,6 +225,7 @@ final class DataStore: ObservableObject {
             try? FileManager.default.removeItem(at: self.toBeSentFileUrl)
             try? FileManager.default.removeItem(at: self.sentFileUrl)
             try? FileManager.default.removeItem(at: self.receivedUrl)
+            self.reloadImages();
             
             return Promise.value(());
         }.catch { err in

@@ -30,6 +30,7 @@
 		4C492BC525140D70007B1242 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4161524DAFF490037AD0D /* API.swift */; };
 		4C492BC725140EF4007B1242 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BC625140EF4007B1242 /* Moya */; };
 		4C492BC925140F02007B1242 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BC825140F02007B1242 /* PromiseKit */; };
+		4C492BCC25155BCB007B1242 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BCB25155BCB007B1242 /* Logging */; };
 		4C7C759F250823A7001EE8CB /* WidgetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* WidgetStyles.swift */; };
 		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
 		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
@@ -132,6 +133,7 @@
 			files = (
 				4CB4161924DB017A0037AD0D /* Moya in Frameworks */,
 				4C492BC325140C4B007B1242 /* PromiseKit in Frameworks */,
+				4C492BCC25155BCB007B1242 /* Logging in Frameworks */,
 				4C814410250BCF72009B165D /* YPImagePicker in Frameworks */,
 				4C464625250E0A4B0029CEC1 /* SwiftUIPager in Frameworks */,
 				4C814413250D0AFA009B165D /* Lottie in Frameworks */,
@@ -299,6 +301,7 @@
 				4C814412250D0AFA009B165D /* Lottie */,
 				4C464624250E0A4B0029CEC1 /* SwiftUIPager */,
 				4C492BC225140C4B007B1242 /* PromiseKit */,
+				4C492BCB25155BCB007B1242 /* Logging */,
 			);
 			productName = photobeam;
 			productReference = 4C0F8BD724A3698900B990DF /* photobeam.app */;
@@ -401,6 +404,7 @@
 				4C814411250D0AFA009B165D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C464623250E0A4B0029CEC1 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				4C492BCA25155BCB007B1242 /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = 4C0F8BD824A3698900B990DF /* Products */;
 			projectDirPath = "";
@@ -917,6 +921,14 @@
 				minimumVersion = 6.13.3;
 			};
 		};
+		4C492BCA25155BCB007B1242 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 		4C81440E250BCF72009B165D /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/BeautyExchange/YPImagePicker.git";
@@ -963,6 +975,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C492BC125140C4B007B1242 /* XCRemoteSwiftPackageReference "PromiseKit" */;
 			productName = PromiseKit;
+		};
+		4C492BCB25155BCB007B1242 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C492BCA25155BCB007B1242 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 		4C81440F250BCF72009B165D /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;

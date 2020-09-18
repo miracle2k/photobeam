@@ -82,14 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApnsDeviceTokenState.shared.deviceToken = "error";
     }
     
-    func application(_ application: UIApplication,didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Received push notification")
-        completionHandler(.newData)
-    }
-    
-    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
+        // Is there a better way to access the data store?
+        SceneDelegate.sharedDataStore?.refreshState().done {
+            completionHandler(.newData)
+        }
     }
 }
 
