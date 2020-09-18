@@ -21,6 +21,9 @@ struct ContentView: View {
     
     init(dataStore: DataStore) {
         self.dataStore = dataStore;
+        
+        // catch any error here
+        // in addition, bind a progressview to isINitialzied in the code thing, maybe go with a "preparing screen"? 
         self.dataStore.ensureAccount()
     }
     

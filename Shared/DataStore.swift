@@ -13,6 +13,11 @@ import PromiseKit
 import WidgetKit
 
 
+class ApnsDeviceTokenState: ObservableObject {
+    static let shared = ApnsDeviceTokenState()
+    @Published var deviceToken: String = ""
+}
+
 struct AccountResponse: Codable {
     let accountId: Int
     let connectCode: String
@@ -94,6 +99,18 @@ final class DataStore: ObservableObject {
             }
         }.store(in: &subscribers)
         
+        ApnsDeviceTokenState.shared.$deviceToken.sink() { token in
+            // This is the initial value, we do not want to do anything with it.
+            if token == "" {
+                return;
+            }
+            
+            self.setApnsToken(token: token).catch { err in print("Error", err) }
+        }.store(in: &subscribers)
+        
+        // watch for devicetoken changing
+        
+        
         if (setupTimer) {
             self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true);
         }
@@ -123,6 +140,8 @@ final class DataStore: ObservableObject {
     
     // Run this once at the beginning after creating the instance. Will either create an accout, or verify
     // that the current account is still valid.
+    //
+    // Will also make sure to set the current apns device token
     public func ensureAccount() {
         // TODO: in this case, we probably want to refresh the account, ensure it is valid!
         if (state.account != nil) {
@@ -135,16 +154,22 @@ final class DataStore: ObservableObject {
         
         firstly {
             provider.requestPromise(.register)
-        }.done { moyaResponse in
+        }.then { moyaResponse -> Promise<Void> in
             do {
                 self.state.account = try moyaResponse.map(AccountResponse.self)
             } catch {
                 print(error)
-                return;
+                return Promise.value(());
             }
             
             self.isInitialized = true;
+            
+            return Promise.value(());
         }
+    }
+    
+    public func setApnsToken(token: String) -> Promise<Void> {
+        return self.provider.requestPromise(.setprops(apnsToken: token)).then { response in return Promise.value(()) }
     }
     
     // Request a connection to a peer using a code. This returns a promise. If the code is invalid,

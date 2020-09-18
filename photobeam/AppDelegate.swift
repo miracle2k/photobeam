@@ -63,14 +63,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-       // make your function call
-    }
+    // MARK: PushNotification callbacks
     
+    // Callback from OS when we successfully register for push notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        print("this will return '32 bytes' in iOS 13+ rather than the token \(tokenString)")
+        print("Received apns device token callback - success")
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        ApnsDeviceTokenState.shared.deviceToken = token;
+    }
+    
+    // Callback from OS when registering for push notifications fails.
+    func application(_ application: UIApplication,
+                didFailToRegisterForRemoteNotificationsWithError
+                    error: Error) {
+       // Try again later.
+        print("Received apns device token callback - failure")
+        ApnsDeviceTokenState.shared.deviceToken = "error";
+    }
+    
+    func application(_ application: UIApplication,didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Received push notification")
+        completionHandler(.newData)
+    }
+    
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
     }
 }
 

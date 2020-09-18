@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let dataStore = DataStore();
         let contentView = ContentView(dataStore: dataStore).environmentObject(dataStore)
+            
+        // Register for remote notifications - do this only after the DataStore() instance has been created, for it to handle
+        // any callback value.
+        UIApplication.shared.registerForRemoteNotifications()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
