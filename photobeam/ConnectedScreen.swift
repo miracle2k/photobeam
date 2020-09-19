@@ -48,12 +48,12 @@ struct ConnectedScreen: AppScreen {
                 Image("camera").resizable().padding(5).frame(width: 40, height: 40).modifier(RoundButton(action: {
                     self.presented.toggle()
                 }, color: MyColors.yellow)).fullScreenCover(isPresented: $presented) {
-    //                YPBasedImagePicker { (image) in
-    //                    self.handlePhotoPicked(image: image)
-    //                }
-                    StandardImagePicker { (image) in
+                    YPBasedImagePicker { (image) in
                         self.handlePhotoPicked(image: image)
                     }
+//                    StandardImagePicker { (image) in
+//                        self.handlePhotoPicked(image: image)
+//                    }
                 }
             }
         }
