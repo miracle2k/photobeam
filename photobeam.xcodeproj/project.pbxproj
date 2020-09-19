@@ -37,6 +37,7 @@
 		4C492BDD2516647B007B1242 /* GlobalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C492BDC2516647B007B1242 /* GlobalLog.swift */; };
 		4C492BDE2516647B007B1242 /* GlobalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C492BDC2516647B007B1242 /* GlobalLog.swift */; };
 		4C492BE0251664D6007B1242 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BDF251664D6007B1242 /* Logging */; };
+		4C492BE2251667CE007B1242 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 4C492BE1251667CE007B1242 /* SwiftyBeaver */; };
 		4C7C759F250823A7001EE8CB /* WidgetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C759E250823A7001EE8CB /* WidgetStyles.swift */; };
 		4C7C75A12508EB2F001EE8CB /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A02508EB2F001EE8CB /* NavigationStack.swift */; };
 		4C7C75A32508F611001EE8CB /* BackgroundSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C75A22508F611001EE8CB /* BackgroundSimple.swift */; };
@@ -173,6 +174,7 @@
 				4C0F8C1124A369A500B990DF /* WidgetKit.framework in Frameworks */,
 				4C492BC725140EF4007B1242 /* Moya in Frameworks */,
 				4C492BE0251664D6007B1242 /* Logging in Frameworks */,
+				4C492BE2251667CE007B1242 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +375,7 @@
 				4C492BC625140EF4007B1242 /* Moya */,
 				4C492BC825140F02007B1242 /* PromiseKit */,
 				4C492BDF251664D6007B1242 /* Logging */,
+				4C492BE1251667CE007B1242 /* SwiftyBeaver */,
 			);
 			productName = BeamWidgetExtension;
 			productReference = 4C0F8C0E24A369A500B990DF /* BeamWidgetExtension.appex */;
@@ -1017,6 +1020,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C492BCA25155BCB007B1242 /* XCRemoteSwiftPackageReference "swift-log" */;
 			productName = Logging;
+		};
+		4C492BE1251667CE007B1242 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C492BD625165D18007B1242 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
 		};
 		4C81440F250BCF72009B165D /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;

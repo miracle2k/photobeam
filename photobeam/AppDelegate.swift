@@ -14,14 +14,14 @@ import Logging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        LoggingSystem.bootstrap { label in
-//            MultiplexLogHandler([
-//                DataDogLogHandler(label: label, key: "ef6e99b679012e04173862a6e0de1ba8", hostname: "docker-desktop"),
-//
-//                // Setup the standard logging backend to enable console logging
-//                StreamLogHandler.standardOutput(label: label),
-//            ])
-//        }
+        LoggingSystem.bootstrap { label in
+            MultiplexLogHandler([
+                BeaverLogHandler(),
+
+                // Setup the standard logging backend to enable console logging
+                StreamLogHandler.standardOutput(label: label),
+            ])
+        }
             
         logger.info("App Started")
         

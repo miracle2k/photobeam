@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 import Intents
+import Logging
 
 
 struct Provider: TimelineProvider {
@@ -19,6 +20,7 @@ struct Provider: TimelineProvider {
     }();
     
     func getSnapshot(in context: Context, completion: @escaping (ShowFrameEntry) -> Void) {
+        logger.info("BeamWidget:getSnapshot()")
         // We must return the snapshot quickly, so we either return the current image, or a dummy.
         let exists = FileManager.default.fileExists(atPath: Paths.receivedUrl.path);
         let entry = ShowFrameEntry(date: Date(), isEmpty: !exists)
@@ -43,6 +45,7 @@ struct Provider: TimelineProvider {
      * Actually, do the query.
      */
     func getTimeline(in context: Context, completion: @escaping (Timeline<ShowFrameEntry>) -> Void) {
+        logger.info("BeamWidget:getTimeline()")
         // possibly do a query()
         // then try to download the file right now
         // later worry about the bg mode.
@@ -121,6 +124,18 @@ struct FrameView : View {
 @main
 struct BeamWidget: SwiftUI.Widget {
     private let kind: String = "com.photobeam.widget"
+    
+    init() {
+        LoggingSystem.bootstrap { label in
+            MultiplexLogHandler([
+                BeaverLogHandler(),
+
+                // Setup the standard logging backend to enable console logging
+                StreamLogHandler.standardOutput(label: label),
+            ])
+        }
+        logger.info("BeamWidget main() called.")
+    }
 
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
