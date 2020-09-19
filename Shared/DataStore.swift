@@ -11,6 +11,7 @@ import Combine
 import Moya
 import PromiseKit
 import WidgetKit
+import Logging
 
 
 class ApnsDeviceTokenState: ObservableObject {
@@ -80,20 +81,18 @@ final class DataStore: ObservableObject {
             }
         } else {
             // not convertible to Data, keep default values
-            print("No state in storage, starting fresh")
+            logger.info("No state in storage, starting fresh")
         } 
         
         // We need to store the subscription, or it'll be removed when this goes out of scope.
         // But we can't assign to an instance variable, because swift?
         self.$state.sink() {
-            print ("state now: \($0)")
             do {
                 let encoded = try JSONEncoder().encode($0)
-                print("Writing state to storage")
+                logger.debug("Writing state to storage")
                 self.userDefaultsGroup.set(encoded, forKey: "state")
                 
                 let currentState = UserDefaults.standard.data(forKey: "state")
-                print(currentState)
             }
             catch {
             }
@@ -268,7 +267,7 @@ final class DataStore: ObservableObject {
             
             return self.fetchPeerImageIfNecessary()
         }.recover { err -> Promise<Void> in
-            print("DataStore.refreshState(): failed with an error: ", err)
+            logger.error("DataStore.refreshState(): failed with an error: \(err)")
             // Error 401=Unauthorized? Creating a new account automatically is an issue, but we
             // might want to switch to an "unauthorized" state.
             
@@ -279,16 +278,16 @@ final class DataStore: ObservableObject {
     // This will fetch a new photo if we are told there is one.
     public func fetchPeerImageIfNecessary() -> Promise<Void> {
         if (self.state.connection?.shouldFetch ?? false) {
-            print("ok, fetching remote payload")
+            logger.debug("ok, fetching remote payload")
             return firstly {
                 provider.requestPromise(.get)
             }.then { (fetchResponse: Moya.Response) -> Guarantee<Void> in
-                print("payload fetched, writing it to file.")
+                logger.info("payload fetched, writing it to file.")
                 do {
                     try fetchResponse.data.write(to: self.receivedUrl)
                 }
                 catch {
-                    print("Failed to save file")
+                    logger.error("Failed to save file")
                 }
                 
                 self.reloadImages()

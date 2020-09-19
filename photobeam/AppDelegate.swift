@@ -7,19 +7,32 @@
 
 import UIKit
 import BackgroundTasks
+import Logging
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        LoggingSystem.bootstrap { label in
+//            MultiplexLogHandler([
+//                DataDogLogHandler(label: label, key: "ef6e99b679012e04173862a6e0de1ba8", hostname: "docker-desktop"),
+//
+//                // Setup the standard logging backend to enable console logging
+//                StreamLogHandler.standardOutput(label: label),
+//            ])
+//        }
+            
+        logger.info("App Started")
+        
+        
         // This registers the handler for our task - when the system runs our task, it will run this handler.
-        BGTaskScheduler.shared.register(
-            forTaskWithIdentifier: "com.photobeam.refresh",
-            using: DispatchQueue.global()
-        ) { task in
-            self.handleImageFetch(task: task as! BGAppRefreshTask)
-        }
+//        BGTaskScheduler.shared.register(
+//            forTaskWithIdentifier: "com.photobeam.refresh",
+//            using: DispatchQueue.global()
+//        ) { task in
+//            self.handleImageFetch(task: task as! BGAppRefreshTask)
+//        }
         
         return true
     }
@@ -68,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Callback from OS when we successfully register for push notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        print("Received apns device token callback - success")
+        logger.info("Received apns device token callback - success")
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         ApnsDeviceTokenState.shared.deviceToken = token;
     }
@@ -77,14 +90,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                 didFailToRegisterForRemoteNotificationsWithError
                     error: Error) {
-       // Try again later.
-        print("Received apns device token callback - failure")
+        logger.info("Received apns device token callback - failure")
         ApnsDeviceTokenState.shared.deviceToken = "error";
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Received push notification")
+        logger.info("Received push notification")
         // Is there a better way to access the data store?
         SceneDelegate.sharedDataStore?.refreshState().done {
             completionHandler(.newData)

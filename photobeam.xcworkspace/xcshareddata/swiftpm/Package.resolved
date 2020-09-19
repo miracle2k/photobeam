@@ -92,6 +92,15 @@
         }
       },
       {
+        "package": "SwiftyBeaver",
+        "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
+        "state": {
+          "branch": null,
+          "revision": "c7b2fceb3fd0095acba4792c728f3f062baf8fb9",
+          "version": "1.9.2"
+        }
+      },
+      {
         "package": "YPImagePicker",
         "repositoryURL": "https://github.com/BeautyExchange/YPImagePicker.git",
         "state": {
