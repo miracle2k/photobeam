@@ -57,7 +57,7 @@ struct Provider: TimelineProvider {
      *
      * So depending on the approach chosen above, we have to either return policy=never (and rely on a bg  update task)
      * We return "refresh now", with policy=never. We then manually send a refresh request whenever we get a new picture, which itself
-     * is refreshed via a background task & push notification.    
+     * is refreshed via a background task & push notification.
      */
     func getTimeline(in context: Context, completion: @escaping (Timeline<ShowFrameEntry>) -> Void) {
         logger.info("BeamWidget:getTimeline()")

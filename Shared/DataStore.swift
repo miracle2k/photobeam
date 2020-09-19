@@ -278,11 +278,11 @@ final class DataStore: ObservableObject {
     // This will fetch a new photo if we are told there is one.
     public func fetchPeerImageIfNecessary() -> Promise<Void> {
         if (self.state.connection?.shouldFetch ?? false) {
-            logger.debug("ok, fetching remote payload")
+            logger.debug("DataStore.fetchPeerImageIfNecessary(): fetching remote payload")
             return firstly {
                 provider.requestPromise(.get)
             }.then { (fetchResponse: Moya.Response) -> Guarantee<Void> in
-                logger.info("payload fetched, writing it to file.")
+                logger.info("DataStore.fetchPeerImageIfNecessary(): payload fetched, writing it to file.")
                 do {
                     try fetchResponse.data.write(to: self.receivedUrl)
                 }
@@ -294,7 +294,7 @@ final class DataStore: ObservableObject {
                 WidgetCenter.shared.reloadTimelines(ofKind: "com.photobeam.widget")
                 return Guarantee.value(())
             }.then { (response: Void) -> Promise<Void> in
-                print("Calling clear payload")
+                print("DataStore.fetchPeerImageIfNecessary(): Calling clear payload")
                 return self.provider.requestPromise(.clear).map { _ in () }
             }
         }
